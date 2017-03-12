@@ -66,6 +66,13 @@ public class AlertDialog extends Dialog {
 
         }
 
+
+        public Builder setBackShape(int shapeId) {
+            P.mBackShape=shapeId;
+            return  this;
+
+        }
+
         public Builder setOnCancelListener(OnCancelListener onCancelListener) {
             P.mOnCancelListener = onCancelListener;
             return this;

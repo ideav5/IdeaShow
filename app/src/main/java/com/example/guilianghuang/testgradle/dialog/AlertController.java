@@ -2,6 +2,8 @@ package com.example.guilianghuang.testgradle.dialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.IdRes;
 import android.util.SparseArray;
 import android.view.ContextThemeWrapper;
@@ -11,6 +13,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+
+import com.example.guilianghuang.testgradle.R;
 
 class AlertController {
     private AlertDialog mAlertDialog;
@@ -72,10 +76,11 @@ class AlertController {
         public SparseArray<CharSequence> mTextArray = new SparseArray<>();
         //存放点击事件
         public SparseArray<View.OnClickListener> mClickListenerSparseArray = new SparseArray<>();
-        public int mWidth= ViewGroup.LayoutParams.MATCH_PARENT;
+        public int mWidth= ViewGroup.LayoutParams.WRAP_CONTENT;
         public int mHeight= ViewGroup.LayoutParams.WRAP_CONTENT;
 
         public int mGravity= Gravity.CENTER;
+        public int mBackShape=0;
 
         public AlertParams(Context context, int themeWrapper) {
             this.mContext = context;
@@ -102,6 +107,14 @@ class AlertController {
             if (viewHelper == null) {
                 throw new IllegalArgumentException("请设置设置布局 setContentView");
             }
+
+
+            if (mBackShape!=0) {
+            viewHelper.getContentView().setBackgroundResource(mBackShape);
+            }
+//            viewHelper.getContentView().setBackgroundColor(Color.GREEN);
+
+
             mAlert.getAlertDialog().setContentView(viewHelper.getContentView());
             mAlert.setViewHelper(viewHelper);
             //设置文本

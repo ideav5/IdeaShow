@@ -36,9 +36,13 @@ public class MainActivity extends AppCompatActivity {
                                 ToasUtils.toast(MainActivity.this, "发送按钮----");
                             }
                         }).setText(R.id.tv_title, "这是标题").
-                                setText(R.id.tv_content, "我就是内容").setBottom().fullScreen().show();
+                                setText(R.id.tv_content, "我就是内容")
+                        .setBottom()
+                        .fullScreen()
+                        .setBackShape(R.drawable.shape_normal_dialog_out)
+                        .show();
 
-                alertDialog.setText(R.id.tv_content,"9999999999");
+                alertDialog.setText(R.id.tv_content,"9993333333333333333\n333333333339999999");
             }
         });
 
