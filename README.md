@@ -1,0 +1,2 @@
+# IdeaShow
+this is lib 
