@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">TestGradle</string>
+    <string name="txt_base_use">基本使用</string>
+
+    <array name="list_name">
+
+        <item>成龙</item>
+        <item>成龙1</item>
+        <item>成龙2</item>
+        <item>成龙3</item>
+        <item>成龙4</item>
+        <item>成龙5</item>
+        <item>成龙6</item>
+        <item>成龙7</item>
+        <item>成龙8</item>
+        <item>成龙9</item>
+        <item>成龙10</item>
+        <item>成龙11</item>
+        <item>成龙12</item>
+        <item>成龙13</item>
+        <item>成龙14</item>
+        <item>成龙15</item>
+        <item>成龙16</item>
+        <item>成龙16</item>
+        <item>成龙17</item>
+
+    </array>
+
+</resources>
