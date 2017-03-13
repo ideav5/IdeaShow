@@ -14,19 +14,20 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.guilianghuang.testgradle.R;
+import com.example.guilianghuang.testgradle.recyclerview.widget.WrapRecyclerView;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class BaseUseActivity extends AppCompatActivity {
 
-    private RecyclerView mRecyclerView;
+    private WrapRecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_use);
-        mRecyclerView = (RecyclerView) findViewById(R.id.rec_view);
+        mRecyclerView = (WrapRecyclerView) findViewById(R.id.rec_view);
 //        mRecyclerView
         String[] listName = getResources().getStringArray(R.array.list_name);
         List<String> stringList = Arrays.asList(listName);
@@ -37,6 +38,9 @@ public class BaseUseActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
 //        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(adapter);
+        View headerView = View.inflate(this, R.layout.normal_dialog_layout, null);
+        headerView.setBackgroundColor(Color.GREEN);
+        mRecyclerView.addHeaderView(headerView);
         //添加分割线
 //        mRecyclerView.addItemDecoration(new LinearLayoutDecoration(this,R.drawable.item_divider));
         mRecyclerView.addItemDecoration(new GridLayoutDecoration(this,R.drawable.item_grid_divider,mRecyclerView));

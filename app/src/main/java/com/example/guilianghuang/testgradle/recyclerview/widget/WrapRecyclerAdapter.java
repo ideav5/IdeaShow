@@ -49,14 +49,14 @@ public class WrapRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     private boolean isFooterViewType(int viewType) {
-        if (mFooterViews.indexOfKey(viewType) > 0) {
+        if (mFooterViews.indexOfKey(viewType) >=0) {
             return true;
         }
         return false;
     }
 
     private boolean isHeaderViewType(int viewType) {
-        if (mHeaderViews.indexOfKey(viewType)>0) {
+        if (mHeaderViews.indexOfKey(viewType)>=0) {
             return true;
         }
         return false;
@@ -69,7 +69,7 @@ public class WrapRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
         final int adapterPosition=position-mHeaderViews.size();
 
-        mAdapter.onBindViewHolder(holder,position);
+        mAdapter.onBindViewHolder(holder,adapterPosition);
 
         // 设置点击和长按事件
         if (mItemClickListener != null) {
