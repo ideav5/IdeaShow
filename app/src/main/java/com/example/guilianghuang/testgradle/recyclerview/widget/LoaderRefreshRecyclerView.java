@@ -88,6 +88,9 @@ public class LoaderRefreshRecyclerView extends RefreshRecyclerView {
     }
 
     private void restoreLoadView() {
+        if (mLoadView == null) {
+            return;
+        }
         //恢复状态
         MarginLayoutParams layoutParams = (MarginLayoutParams) mLoadView.getLayoutParams();
         int bottomMargin = layoutParams.bottomMargin;
@@ -140,10 +143,7 @@ public class LoaderRefreshRecyclerView extends RefreshRecyclerView {
                     mCurrentDrag = true;
                     return true;
                 }
-
-
                 break;
-
         }
 
         return super.onTouchEvent(e);

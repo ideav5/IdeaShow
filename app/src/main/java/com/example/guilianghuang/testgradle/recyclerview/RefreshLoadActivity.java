@@ -5,13 +5,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.view.View;
 
 import com.example.guilianghuang.testgradle.R;
 import com.example.guilianghuang.testgradle.recyclerview.base.BaseRecyclerViewAdapter;
 import com.example.guilianghuang.testgradle.recyclerview.base.ItemClickListener;
 import com.example.guilianghuang.testgradle.recyclerview.base.ViewHolder;
-import com.example.guilianghuang.testgradle.recyclerview.refreshLoad.DefaultLoadCreator;
-import com.example.guilianghuang.testgradle.recyclerview.refreshLoad.DefaultRefreshCreator;
 import com.example.guilianghuang.testgradle.recyclerview.widget.LoaderRefreshRecyclerView;
 import com.example.guilianghuang.testgradle.recyclerview.widget.RefreshRecyclerView;
 
@@ -38,10 +37,11 @@ public class RefreshLoadActivity extends AppCompatActivity implements RefreshRec
         initData();
 
         mRecyclerView = (LoaderRefreshRecyclerView) findViewById(R.id.recycler_view);
-        mRecyclerView.addRefreshCreator(new DefaultRefreshCreator());
-        mRecyclerView.addLoadCreator(new DefaultLoadCreator());
+//        mRecyclerView.addRefreshCreator(new DefaultRefreshCreator());
+//        mRecyclerView.addLoadCreator(new DefaultLoadCreator());
         mRecyclerView.setOnRefreshListener(this);
         mRecyclerView.setOnLoadMoreListener(this);
+
 
         // 设置正在获取数据页面和无数据页面
 //        mRecyclerView.addLoadingView(findViewById(R.id.load_view));
@@ -49,14 +49,20 @@ public class RefreshLoadActivity extends AppCompatActivity implements RefreshRec
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 4));
         mRecyclerView.addItemDecoration(new GridLayoutDecoration(this,R.drawable.item_grid_divider,mRecyclerView));
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mAdapter = new HomeAdapter(RefreshLoadActivity.this, mDatas);
-                mRecyclerView.setAdapter(mAdapter);
-            }
-        },2000);
+        mAdapter = new HomeAdapter(RefreshLoadActivity.this, mDatas);
+//                mAdapter.
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.addHeaderView(View.inflate(this,R.layout.normal_dialog_layout,null));
+        mRecyclerView.addHeaderView(View.inflate(this,R.layout.normal_dialog_layout,null));
+        mRecyclerView.addHeaderView(View.inflate(this,R.layout.normal_dialog_layout,null));
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                mAdapter = new HomeAdapter(RefreshLoadActivity.this, mDatas);
+////                mAdapter.
+//                mRecyclerView.setAdapter(mAdapter);
+//            }
+//        },200);
 
 
 
