@@ -9,6 +9,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.example.guilianghuang.testgradle.util.LoggerUtils;
+
 /**
  * 添加下拉刷新的头
  * Created by guilianghuang on 2017/3/12.
@@ -55,9 +57,11 @@ public class RefreshRecyclerView extends WrapRecyclerView {
     public boolean dispatchTouchEvent(MotionEvent ev) {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN://记录
+                LoggerUtils.debug("dispatchTouchEvent   ACTION_DOWN  :");
                 mFingerDownY = (int) ev.getRawY();
                 break;
             case MotionEvent.ACTION_UP:
+                LoggerUtils.debug("dispatchTouchEvent   ACTION_UP  :");
                 if (mCurrentDrag) {
                     restoreRefreshView();
                 }
@@ -81,6 +85,7 @@ public class RefreshRecyclerView extends WrapRecyclerView {
                 }
                 int distanceY = (int) ((e.getRawY() - mFingerDownY) * mDragIndex);
                 //刷新
+                LoggerUtils.debug("onTouchEvent   distanceY  :" + distanceY);
                 if (distanceY > 0) {
                     int marginTop = distanceY - mRefreshViewHeight;
                     setRefreshViewMarginTop(marginTop);
@@ -151,6 +156,7 @@ public class RefreshRecyclerView extends WrapRecyclerView {
         if (mRefreshView != null && mRefreshViewHeight <= 0) {
             // 获取头部刷新View的高度
             mRefreshViewHeight = mRefreshView.getMeasuredHeight();
+            LoggerUtils.logger("onLayout======mRefreshViewHeight==  :"+mRefreshViewHeight);
             if (mRefreshViewHeight > 0) {
                 // 隐藏头部刷新的View  marginTop  多留出1px防止无法判断是不是滚动到头部问题
                 setRefreshViewMarginTop(-mRefreshViewHeight + 1);
