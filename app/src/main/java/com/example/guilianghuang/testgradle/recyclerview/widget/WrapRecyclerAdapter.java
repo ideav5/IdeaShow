@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import com.example.guilianghuang.testgradle.recyclerview.base.ItemClickListener;
 import com.example.guilianghuang.testgradle.recyclerview.base.ItemLongClickListener;
@@ -69,7 +68,7 @@ public class WrapRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
         final int adapterPosition=position-mHeaderViews.size();
 
-        mAdapter.onBindViewHolder(holder,position);
+        mAdapter.onBindViewHolder(holder,adapterPosition);
 
         // 设置点击和长按事件
         if (mItemClickListener != null) {
@@ -102,7 +101,8 @@ public class WrapRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
           return  mHeaderViews.keyAt(position);
         }
         if (isFooterView(position)) {
-            return mFooterViews.keyAt(position);
+//            mFooterViews.
+            return mFooterViews.keyAt( position- mHeaderViews.size()-mAdapter.getItemCount());
         }
         position -= mHeaderViews.size();
 

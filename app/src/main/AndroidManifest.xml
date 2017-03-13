@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".recyclerview.BaseUseActivity"/>
-
+        <activity android:name=".recyclerview.RefreshLoadActivity"/>
     </application>
 
 </manifest>

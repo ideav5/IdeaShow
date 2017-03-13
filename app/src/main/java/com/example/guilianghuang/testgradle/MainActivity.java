@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.example.guilianghuang.testgradle.dialog.AlertDialog;
 import com.example.guilianghuang.testgradle.recyclerview.BaseUseActivity;
+import com.example.guilianghuang.testgradle.recyclerview.RefreshLoadActivity;
 import com.example.guilianghuang.testgradle.util.ToasUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
                         .show();
 
                 alertDialog.setText(R.id.tv_content,"9993333333333333333\n333333333339999999");
+            }
+        });
+
+        findViewById(R.id.refresh_load_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, RefreshLoadActivity.class));
             }
         });
 

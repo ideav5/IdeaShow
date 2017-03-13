@@ -1,7 +1,7 @@
 package com.example.guilianghuang.testgradle.recyclerview.base;
 
 import android.content.Context;
-import android.support.annotation.IdRes;
+import android.support.annotation.LayoutRes;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +24,7 @@ public abstract class BaseRecyclerViewAdapter<DATA> extends RecyclerView.Adapter
     private LayoutInflater mLayoutInflater;
     private MultiTypeSupport mMultiTypeSupport;
 
-    public BaseRecyclerViewAdapter(Context context, List<DATA> listData, @IdRes int layoutId) {
+    public BaseRecyclerViewAdapter(Context context, List<DATA> listData, @LayoutRes int layoutId) {
         mContext = context;
         mListData = listData;
         this.layoutId = layoutId;
@@ -78,12 +78,12 @@ public abstract class BaseRecyclerViewAdapter<DATA> extends RecyclerView.Adapter
             });
 
         }
-
-        convert(holder,position);
+        DATA data = mListData.get(position);
+        convert(holder,data);
 
     }
 
-    public abstract void convert(ViewHolder holder, int position);
+    public abstract void convert(ViewHolder holder, DATA data);
 
     @Override
     public int getItemCount() {
