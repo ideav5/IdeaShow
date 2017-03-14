@@ -5,12 +5,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.view.View;
 
 import com.example.guilianghuang.testgradle.R;
 import com.example.guilianghuang.testgradle.recyclerview.base.BaseRecyclerViewAdapter;
 import com.example.guilianghuang.testgradle.recyclerview.base.ItemClickListener;
 import com.example.guilianghuang.testgradle.recyclerview.base.ViewHolder;
+import com.example.guilianghuang.testgradle.recyclerview.refreshLoad.DefaultLoadCreator;
+import com.example.guilianghuang.testgradle.recyclerview.refreshLoad.DefaultRefreshCreator;
 import com.example.guilianghuang.testgradle.recyclerview.widget.LoaderRefreshRecyclerView;
 import com.example.guilianghuang.testgradle.recyclerview.widget.RefreshRecyclerView;
 
@@ -37,8 +38,8 @@ public class RefreshLoadActivity extends AppCompatActivity implements RefreshRec
         initData();
 
         mRecyclerView = (LoaderRefreshRecyclerView) findViewById(R.id.recycler_view);
-//        mRecyclerView.addRefreshCreator(new DefaultRefreshCreator());
-//        mRecyclerView.addLoadCreator(new DefaultLoadCreator());
+        mRecyclerView.addRefreshCreator(new DefaultRefreshCreator());
+        mRecyclerView.addLoadCreator(new DefaultLoadCreator());
         mRecyclerView.setOnRefreshListener(this);
         mRecyclerView.setOnLoadMoreListener(this);
 
@@ -52,9 +53,6 @@ public class RefreshLoadActivity extends AppCompatActivity implements RefreshRec
         mAdapter = new HomeAdapter(RefreshLoadActivity.this, mDatas);
 //                mAdapter.
         mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.addHeaderView(View.inflate(this,R.layout.normal_dialog_layout,null));
-        mRecyclerView.addHeaderView(View.inflate(this,R.layout.normal_dialog_layout,null));
-        mRecyclerView.addHeaderView(View.inflate(this,R.layout.normal_dialog_layout,null));
 //        new Handler().postDelayed(new Runnable() {
 //            @Override
 //            public void run() {
@@ -109,7 +107,7 @@ public class RefreshLoadActivity extends AppCompatActivity implements RefreshRec
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                mRecyclerView.onStopLoad();
+                mRecyclerView.onStopRefresh();
             }
         }, 2000);
     }

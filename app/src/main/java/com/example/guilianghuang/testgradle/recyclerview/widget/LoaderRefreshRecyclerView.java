@@ -15,7 +15,7 @@ import android.view.View;
 
 public class LoaderRefreshRecyclerView extends RefreshRecyclerView {
     // 上拉刷新的辅助类
-    private LoadViewCreator mLoadviewCreator;
+    private LoadViewCreator mLoadViewCreator;
     // 上拉刷新头部的高度
     private int mLoadViewHeight = 0;
     // 上拉刷新的头部View
@@ -49,15 +49,15 @@ public class LoaderRefreshRecyclerView extends RefreshRecyclerView {
 
     public void addLoadCreator(LoadViewCreator loadViewCreator) {
         if (loadViewCreator != null) {
-            mLoadviewCreator = loadViewCreator;
+            mLoadViewCreator = loadViewCreator;
             addLoadView();
         }
     }
 
     private void addLoadView() {
         RecyclerView.Adapter adapter = getAdapter();
-        if (adapter != null && mLoadviewCreator != null) {
-            View loadView = mLoadviewCreator.getLoadView(getContext(), this);
+        if (adapter != null && mLoadViewCreator != null) {
+            View loadView = mLoadViewCreator.getLoadView(getContext(), this);
             if (loadView != null) {
                 mLoadView = loadView;
                 addFooterView(loadView);
@@ -83,7 +83,6 @@ public class LoaderRefreshRecyclerView extends RefreshRecyclerView {
                 }
                 break;
         }
-
         return super.dispatchTouchEvent(ev);
     }
 
@@ -92,60 +91,54 @@ public class LoaderRefreshRecyclerView extends RefreshRecyclerView {
             return;
         }
         //恢复状态
-        MarginLayoutParams layoutParams = (MarginLayoutParams) mLoadView.getLayoutParams();
-        int bottomMargin = layoutParams.bottomMargin;
+        int paddingBottom = mLoadView.getPaddingBottom();
         int finalBottom = -mLoadViewHeight + 1;
         //用位置判断当前的状态
         if (mCurrentLoadStatus == LOAD_STATUS_LOOSEN_LOADING) {
             finalBottom = 0;
             mCurrentLoadStatus = LOAD_STATUS_LOADING;
-            if (mLoadviewCreator != null) {
-                mLoadviewCreator.onLoading();
+            if (mLoadViewCreator != null) {
+                mLoadViewCreator.onLoading();
             }
             if (mListener != null) {
                 mListener.onLoad();
             }
-
         }
-
-        int duringTime = bottomMargin - finalBottom;
-        ValueAnimator animator = ValueAnimator.ofFloat(bottomMargin, finalBottom).setDuration(Math.abs(duringTime));
+        int duringTime = paddingBottom - finalBottom;
+        ValueAnimator animator = ValueAnimator.ofFloat(paddingBottom, finalBottom).setDuration(Math.abs(duringTime));
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 float value = (float) animation.getAnimatedValue();
-                setLoadViewMarginBottom((int) value);
+                setLoadViewPaddingBottom((int) value);
             }
         });
         animator.start();
         mCurrentDrag = false;
-
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent e) {
         switch (e.getAction()) {
             case MotionEvent.ACTION_MOVE:
-                if (canScrollDown() || mLoadviewCreator == null || mLoadView == null || mCurrentLoadStatus == LOAD_STATUS_LOADING) {
+                if (canScrollDown() || mLoadViewCreator == null || mLoadView == null || mCurrentLoadStatus == LOAD_STATUS_LOADING) {
                     return super.onTouchEvent(e);
                 }
                 // 解决上拉加载更多自动滚动问题
                 if (mCurrentDrag) {
                     scrollToPosition(getAdapter().getItemCount() - 1);
                 }
-
                 // 获取手指触摸拖拽的距离
                 int distanceY = (int) ((e.getRawY() - mFingerDownY) * mDragIndex);//小于0
                 if (distanceY < 0) {
                     int marginBottom = -distanceY - mLoadViewHeight;
-                    setLoadViewMarginBottom(marginBottom);
+                    setLoadViewPaddingBottom(marginBottom);
                     updateLoadStatus(-distanceY);
                     mCurrentDrag = true;
                     return true;
                 }
                 break;
         }
-
         return super.onTouchEvent(e);
     }
 
@@ -157,9 +150,8 @@ public class LoaderRefreshRecyclerView extends RefreshRecyclerView {
         } else {
             mCurrentLoadStatus = LOAD_STATUS_LOOSEN_LOADING;
         }
-
-        if (mLoadviewCreator != null) {
-            mLoadviewCreator.onPull(distanceY, mLoadViewHeight, mCurrentLoadStatus);
+        if (mLoadViewCreator != null) {
+            mLoadViewCreator.onPull(distanceY, mLoadViewHeight, mCurrentLoadStatus);
         }
 
     }
@@ -168,21 +160,20 @@ public class LoaderRefreshRecyclerView extends RefreshRecyclerView {
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
         if (mLoadView != null && mLoadViewHeight <= 0) {
+            mLoadView.measure(0,0);
             mLoadViewHeight = mLoadView.getMeasuredHeight();
             if (mLoadViewHeight > 0) {
                 // 隐藏尾部刷新的View  marginTop  多留出1px防止无法判断是不是滚动到头部问题
-                setLoadViewMarginBottom(-mLoadViewHeight + 1);
+                setLoadViewPaddingBottom(-mLoadViewHeight + 1);
             }
         }
     }
 
-    private void setLoadViewMarginBottom(int marginBottom) {
-        MarginLayoutParams layoutParams = (MarginLayoutParams) mLoadView.getLayoutParams();
-        if (marginBottom < -mLoadViewHeight + 1) {
-            marginBottom = -mLoadViewHeight + 1;
+    private void setLoadViewPaddingBottom(int paddingBottom) {
+        if (paddingBottom < -mLoadViewHeight + 1) {
+            paddingBottom = -mLoadViewHeight + 1;
         }
-        layoutParams.topMargin = marginBottom;
-        mLoadView.setLayoutParams(layoutParams);
+        mLoadView.setPadding(0,0,0,paddingBottom);
     }
 
 
@@ -201,8 +192,8 @@ public class LoaderRefreshRecyclerView extends RefreshRecyclerView {
     public void onStopLoad() {
         mCurrentLoadStatus = LOAD_STATUS_NORMAL;
         restoreLoadView();
-        if (mLoadviewCreator != null) {
-            mLoadviewCreator.onStopLoad();
+        if (mLoadViewCreator != null) {
+            mLoadViewCreator.onStopLoad();
         }
     }
 

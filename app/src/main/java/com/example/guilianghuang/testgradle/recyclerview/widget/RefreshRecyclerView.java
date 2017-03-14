@@ -85,7 +85,7 @@ public class RefreshRecyclerView extends WrapRecyclerView {
                 }
                 int distanceY = (int) ((e.getRawY() - mFingerDownY) * mDragIndex);
                 //刷新
-                LoggerUtils.debug("onTouchEvent   distanceY  :" + distanceY);
+//                LoggerUtils.debug("onTouchEvent   distanceY  :" + distanceY);
                 if (distanceY > 0) {
                     int marginTop = distanceY - mRefreshViewHeight;
                     setRefreshViewMarginTop(marginTop);
@@ -156,7 +156,7 @@ public class RefreshRecyclerView extends WrapRecyclerView {
         if (mRefreshView != null && mRefreshViewHeight <= 0) {
             // 获取头部刷新View的高度
             mRefreshViewHeight = mRefreshView.getMeasuredHeight();
-            LoggerUtils.logger("onLayout======mRefreshViewHeight==  :"+mRefreshViewHeight);
+//            LoggerUtils.logger("onLayout======mRefreshViewHeight==  :"+mRefreshViewHeight);
             if (mRefreshViewHeight > 0) {
                 // 隐藏头部刷新的View  marginTop  多留出1px防止无法判断是不是滚动到头部问题
                 setRefreshViewMarginTop(-mRefreshViewHeight + 1);
@@ -205,7 +205,7 @@ public class RefreshRecyclerView extends WrapRecyclerView {
     /**
      * 停止刷新
      */
-    public void onStopLoad() {
+    public void onStopRefresh() {
         mCurrentRefreshStatus = REFRESH_STATUS_NORMAL;
         restoreRefreshView();
         if (mRefreshCreator != null) {
