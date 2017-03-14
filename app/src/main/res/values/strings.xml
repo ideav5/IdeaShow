@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TestGradle</string>
+    <string name="app_name">IdeaShow</string>
     <string name="txt_base_use">基本使用</string>
     <string name="load_refresh">下拉刷新上拉加载</string>
 
