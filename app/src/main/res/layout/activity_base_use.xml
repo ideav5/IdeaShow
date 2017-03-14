@@ -5,10 +5,10 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:padding="10dp"
-              tools:context="com.example.guilianghuang.testgradle.MainActivity">
+              tools:context="com.example.demo.testgradle.MainActivity">
 
     <!--<Recy-->
-    <com.example.guilianghuang.testgradle.recyclerview.widget.WrapRecyclerView
+    <com.example.demo.testgradle.recyclerview.widget.WrapRecyclerView
         android:id="@+id/rec_view"
         android:layout_width="match_parent"
 
