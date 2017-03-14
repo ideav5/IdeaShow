@@ -9,6 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+
+import com.example.demo.testgradle.R;
 
 class AlertController {
     private AlertDialog mAlertDialog;
@@ -41,14 +45,14 @@ class AlertController {
 
     public void setText(int i, CharSequence charSequence) {
         if (mViewHelper != null) {
-            mViewHelper.setText(i,charSequence);
+            mViewHelper.setText(i, charSequence);
         }
 
     }
 
     public void setClickListener(int i, View.OnClickListener onClickListener) {
         if (mViewHelper != null) {
-            mViewHelper.setClickListener(i,onClickListener);
+            mViewHelper.setClickListener(i, onClickListener);
         }
 
     }
@@ -70,11 +74,11 @@ class AlertController {
         public SparseArray<CharSequence> mTextArray = new SparseArray<>();
         //存放点击事件
         public SparseArray<View.OnClickListener> mClickListenerSparseArray = new SparseArray<>();
-        public int mWidth= ViewGroup.LayoutParams.WRAP_CONTENT;
-        public int mHeight= ViewGroup.LayoutParams.WRAP_CONTENT;
+        public int mWidth = ViewGroup.LayoutParams.WRAP_CONTENT;
+        public int mHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
 
-        public int mGravity= Gravity.CENTER;
-        public int mBackShape=0;
+        public int mGravity = Gravity.CENTER;
+        public int mBackShape = 0;
 
         public AlertParams(Context context, int themeWrapper) {
             this.mContext = context;
@@ -103,8 +107,8 @@ class AlertController {
             }
 
 
-            if (mBackShape!=0) {
-            viewHelper.getContentView().setBackgroundResource(mBackShape);
+            if (mBackShape != 0) {
+                viewHelper.getContentView().setBackgroundResource(mBackShape);
             }
 //            viewHelper.getContentView().setBackgroundColor(Color.GREEN);
 
@@ -124,24 +128,23 @@ class AlertController {
             }
             //设置显示
 
-
-
-
-
-
             Window window = mAlert.getWindow();
-
             WindowManager.LayoutParams attributes = window.getAttributes();
-            attributes.width=mWidth;
-            attributes.height=mHeight;
-            attributes.gravity=mGravity;
-         window.setAttributes(attributes);
+            attributes.width = mWidth;
+            attributes.height = mHeight;
+            attributes.gravity = mGravity;
+            window.setAttributes(attributes);
 
+
+//            Animation animation=Ani
+            AnimationSet animationSet = (AnimationSet) AnimationUtils.loadAnimation(mContext, R.anim.dialog_show_animat);
+            viewHelper.getContentView().startAnimation(animationSet);
+//            mIvImg.startAnimation(animationSet);
         }
     }
 
     private void setViewHelper(DialogViewHelper viewHelper) {
-        mViewHelper=viewHelper;
+        mViewHelper = viewHelper;
 
     }
 

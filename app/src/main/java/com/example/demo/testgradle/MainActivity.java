@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }).setText(R.id.tv_title, "这是标题").
                                 setText(R.id.tv_content, "我就是内容")
-                        .setBottom()
-                        .fullScreen()
+//                        .setBottom()
+//                        .fullScreen()
                         .setBackShape(R.drawable.shape_normal_dialog_out)
                         .show();
 

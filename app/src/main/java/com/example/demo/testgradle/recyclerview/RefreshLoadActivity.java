@@ -5,8 +5,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.demo.testgradle.R;
+import com.example.demo.testgradle.banner.BannerAdapter;
+import com.example.demo.testgradle.banner.BannerView;
+import com.example.demo.testgradle.banner.BannerViewPager;
 import com.example.demo.testgradle.recyclerview.base.BaseRecyclerViewAdapter;
 import com.example.demo.testgradle.recyclerview.base.ItemClickListener;
 import com.example.demo.testgradle.recyclerview.base.ViewHolder;
@@ -14,6 +21,7 @@ import com.example.demo.testgradle.recyclerview.refreshLoad.DefaultLoadCreator;
 import com.example.demo.testgradle.recyclerview.refreshLoad.DefaultRefreshCreator;
 import com.example.demo.testgradle.recyclerview.widget.LoaderRefreshRecyclerView;
 import com.example.demo.testgradle.recyclerview.widget.RefreshRecyclerView;
+import com.example.demo.testgradle.util.ToasUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +36,15 @@ public class RefreshLoadActivity extends AppCompatActivity implements RefreshRec
     private LoaderRefreshRecyclerView mRecyclerView;
     private List<String> mDatas;
     private HomeAdapter mAdapter;
+String []photos={
+        "http://cdn.folkcam.cn/rab-Person/PhotoAlbum/667511489040728739.jpg",
+        "http://cdn.folkcam.cn/rab-Person/PhotoAlbum/139691486716585641.jpg",
+        "http://cdn.folkcam.cn/rab-Person/PhotoAlbum/856551489289829617.jpg",
+        "http://cdn.folkcam.cn/rab-Person/PhotoAlbum/14890216032258635.jpeg",
+        "http://cdn.folkcam.cn/rab-Person/PhotoAlbum/737881488376595908.jpg"
 
+
+};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +65,49 @@ public class RefreshLoadActivity extends AppCompatActivity implements RefreshRec
 //        mRecyclerView.addEmptyView(findViewById(R.id.empty_view));
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 4));
-        mRecyclerView.addItemDecoration(new GridLayoutDecoration(this,R.drawable.item_grid_divider,mRecyclerView));
+        mRecyclerView.addItemDecoration(new GridLayoutDecoration(this, R.drawable.item_grid_divider, mRecyclerView));
         mAdapter = new HomeAdapter(RefreshLoadActivity.this, mDatas);
 //                mAdapter.
         mRecyclerView.setAdapter(mAdapter);
+        View banner = LayoutInflater.from(this).inflate(R.layout.ui_banner_layout2, null);
+        mRecyclerView.addHeaderView(banner);
+
+        BannerView bannerview = (BannerView) banner.findViewById(R.id.banner_vp2);
+        bannerview.setAdapter(new BannerAdapter() {
+            @Override
+            public View getView(int position, View convertView) {
+                ImageView imageView = new ImageView(RefreshLoadActivity.this);
+                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                imageView.setAdjustViewBounds(true);
+                Glide.with(RefreshLoadActivity.this).load(photos[position]).centerCrop().into(imageView);
+//                imageView.setImageResource(R.mipmap.ic_launcher);
+                return imageView;
+            }
+
+            @Override
+            public int getCount() {
+                return 5;
+            }
+        });
+        bannerview.setOnBannerItemClickListener(new BannerViewPager.BannerItemClickListener() {
+            @Override
+            public void click(int position) {
+                ToasUtils.toast(RefreshLoadActivity.this,position+"==position===");
+            }
+        });
+//        bannerViewPager.setAdapter(new BannerAdapter() {
+//            @Override
+//            public View getView(int position, View convertView) {
+//                ImageView imageView = new ImageView(RefreshLoadActivity.this);
+//                imageView.setImageResource(R.mipmap.ic_launcher);
+//                return imageView;
+//            }
+//
+//            @Override
+//            public int getCount() {
+//                return 5;
+//            }
+//        });
 //        new Handler().postDelayed(new Runnable() {
 //            @Override
 //            public void run() {
@@ -131,7 +186,7 @@ public class RefreshLoadActivity extends AppCompatActivity implements RefreshRec
         }
 
         @Override
-        public void convert(ViewHolder holder,  String item) {
+        public void convert(ViewHolder holder, String item) {
             holder.setText(R.id.id_num, item);
         }
     }
