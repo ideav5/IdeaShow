@@ -4,12 +4,11 @@
               android:id="@+id/view_ggroup"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-android:background="@color/colorPrimaryDark"
               android:padding="10dp"
               tools:context="com.example.guilianghuang.testgradle.MainActivity">
 
     <!--<Recy-->
-    <android.support.v7.widget.RecyclerView
+    <com.example.guilianghuang.testgradle.recyclerview.widget.WrapRecyclerView
         android:id="@+id/rec_view"
         android:layout_width="match_parent"
 

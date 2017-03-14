@@ -49,14 +49,14 @@ public class WrapRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     private boolean isFooterViewType(int viewType) {
-        if (mFooterViews.indexOfKey(viewType) > 0) {
+        if (mFooterViews.indexOfKey(viewType) >=0) {
             return true;
         }
         return false;
     }
 
     private boolean isHeaderViewType(int viewType) {
-        if (mHeaderViews.indexOfKey(viewType)>0) {
+        if (mHeaderViews.indexOfKey(viewType)>=0) {
             return true;
         }
         return false;
