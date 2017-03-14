@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.demo.testgradle.R;
 
+
 /**
  *
  * Created by guilianghuang on 2017/3/11.
@@ -72,6 +73,26 @@ public class AlertDialog extends Dialog {
 
         }
 
+        /**
+         * 添加默认动画
+         * @return
+         */
+        public Builder addDefaultAnimation(){
+            P.mAnimations = R.style.dialog_scale_anim;
+            return this;
+        }
+
+        /**
+         * 设置动画
+         * @param styleAnimation
+         * @return
+         */
+        public Builder setAnimations(int styleAnimation){
+            P.mAnimations = styleAnimation;
+            return this;
+        }
+
+
         public Builder setOnCancelListener(OnCancelListener onCancelListener) {
             P.mOnCancelListener = onCancelListener;
             return this;
@@ -110,6 +131,10 @@ public class AlertDialog extends Dialog {
 
         public Builder fullScreen() {
             P.mWidth = ViewGroup.LayoutParams.MATCH_PARENT;
+            return this;
+        }
+  public Builder setCancleable( boolean cancleable) {
+            P.mCancelable = cancleable;
             return this;
         }
 

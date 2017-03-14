@@ -14,6 +14,7 @@ import android.view.animation.AnimationUtils;
 
 import com.example.demo.testgradle.R;
 
+
 class AlertController {
     private AlertDialog mAlertDialog;
     private Window mWindow;
@@ -79,6 +80,7 @@ class AlertController {
 
         public int mGravity = Gravity.CENTER;
         public int mBackShape = 0;
+        public int mAnimations=0;
 
         public AlertParams(Context context, int themeWrapper) {
             this.mContext = context;
@@ -129,6 +131,10 @@ class AlertController {
             //设置显示
 
             Window window = mAlert.getWindow();
+            if (mAnimations != 0) {
+                window.setWindowAnimations(mAnimations);
+            }
+
             WindowManager.LayoutParams attributes = window.getAttributes();
             attributes.width = mWidth;
             attributes.height = mHeight;
@@ -137,8 +143,8 @@ class AlertController {
 
 
 //            Animation animation=Ani
-            AnimationSet animationSet = (AnimationSet) AnimationUtils.loadAnimation(mContext, R.anim.dialog_show_animat);
-            viewHelper.getContentView().startAnimation(animationSet);
+//            AnimationSet animationSet = (AnimationSet) AnimationUtils.loadAnimation(mContext, R.anim.dialog_show_animat);
+//            viewHelper.getContentView().startAnimation(animationSet);
 //            mIvImg.startAnimation(animationSet);
         }
     }

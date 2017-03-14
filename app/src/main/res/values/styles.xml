@@ -23,4 +23,9 @@
         <item name="android:windowNoTitle">true</item>
         <!--无标题-->
     </style>
-</resources>
+   <style name="dialog_scale_anim">
+    <item name="android:windowEnterAnimation">@anim/dialog_scale_anim_in</item>
+    <item name="android:windowExitAnimation">@anim/dialog_scale_anim_out</item>
+</style>
+
+    </resources>
