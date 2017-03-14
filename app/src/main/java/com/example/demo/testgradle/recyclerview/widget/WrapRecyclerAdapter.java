@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import com.example.demo.testgradle.recyclerview.base.ItemClickListener;
 import com.example.demo.testgradle.recyclerview.base.ItemLongClickListener;
-import com.example.demo.testgradle.util.LoggerUtils;
 
 /**
  *
@@ -99,7 +98,6 @@ public class WrapRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public int getItemViewType(int position) {
         if (isHeaderView(position)) {
-            LoggerUtils.debug(mHeaderViews.keyAt(position)  +"HEADER_VIEWS_KEYS===view"+position);
           return  mHeaderViews.keyAt(position);
         }
         if (isFooterView(position)) {
@@ -133,7 +131,6 @@ public class WrapRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
 
     public void addHeaderView(View view) {
-        LoggerUtils.debug(HEADER_VIEWS_KEYS  +"HEADER_VIEWS_KEYS===view"+view);
         mHeaderViews.put(HEADER_VIEWS_KEYS++,view);
         notifyDataSetChanged();
     }

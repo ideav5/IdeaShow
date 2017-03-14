@@ -37,11 +37,11 @@ public class RefreshLoadActivity extends AppCompatActivity implements RefreshRec
     private List<String> mDatas;
     private HomeAdapter mAdapter;
 String []photos={
-        "http://cdn.folkcam.cn/rab-Person/PhotoAlbum/667511489040728739.jpg",
-        "http://cdn.folkcam.cn/rab-Person/PhotoAlbum/139691486716585641.jpg",
-        "http://cdn.folkcam.cn/rab-Person/PhotoAlbum/856551489289829617.jpg",
-        "http://cdn.folkcam.cn/rab-Person/PhotoAlbum/14890216032258635.jpeg",
-        "http://cdn.folkcam.cn/rab-Person/PhotoAlbum/737881488376595908.jpg"
+        "http://7xi8d6.com1.z0.glb.clouddn.com/2017-03-13-17267506_264626920661300_5781854075880472576_n.jpg",
+        "http://7xi8d6.com1.z0.glb.clouddn.com/2017-03-08-17126216_1253875034703554_7520300169779216384_n.jpg",
+        "http://7xi8d6.com1.z0.glb.clouddn.com/2017-03-06-tumblr_ombicf0KXi1vpybydo6_540.jpg",
+        "http://7xi8d6.com1.z0.glb.clouddn.com/2017-02-28-15057157_446684252387131_4267811446148038656_n.jpg",
+        "http://7xi8d6.com1.z0.glb.clouddn.com/2017-02-22-16789541_749566998525174_1194252851069583360_n.jpg"
 
 
 };

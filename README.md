@@ -1,2 +1,2 @@
 # IdeaShow
-this is lib 
+this is demo
