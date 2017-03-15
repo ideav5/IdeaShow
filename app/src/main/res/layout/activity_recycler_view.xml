@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+              android:orientation="vertical"
     android:background="@color/white">
 
     <com.example.demo.testgradle.recyclerview.widget.LoaderRefreshRecyclerView
@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:background="@color/white" />
 
-    <TextView
+   <!-- <TextView
         android:id="@+id/load_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,8 +29,8 @@
         android:visibility="gone"
         android:gravity="center"
         android:src="@mipmap/list_load_more"
-        android:text="当前暂无数据..." />
+        android:text="当前暂无数据..." />-->
 
 
-</RelativeLayout>
+</LinearLayout>
 

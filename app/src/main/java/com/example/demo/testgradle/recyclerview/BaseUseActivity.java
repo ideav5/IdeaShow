@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.demo.testgradle.R;
+import com.example.demo.testgradle.recyclerview.base.GridLayoutDecoration;
 import com.example.demo.testgradle.recyclerview.widget.WrapRecyclerView;
 
 import java.util.Arrays;

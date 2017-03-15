@@ -1,4 +1,4 @@
-package com.example.demo.testgradle.recyclerview;
+package com.example.demo.testgradle.recyclerview.base;
 
 import android.content.Context;
 import android.graphics.Canvas;

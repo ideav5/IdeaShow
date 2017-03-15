@@ -14,8 +14,10 @@ import com.example.demo.testgradle.R;
 import com.example.demo.testgradle.banner.BannerAdapter;
 import com.example.demo.testgradle.banner.BannerView;
 import com.example.demo.testgradle.banner.BannerViewPager;
+import com.example.demo.testgradle.navigationbar.DefaultNavigationBar;
 import com.example.demo.testgradle.recyclerview.base.BaseRecyclerViewAdapter;
 import com.example.demo.testgradle.recyclerview.base.ItemClickListener;
+import com.example.demo.testgradle.recyclerview.base.RecyclerGridSpaceDecoration;
 import com.example.demo.testgradle.recyclerview.base.ViewHolder;
 import com.example.demo.testgradle.recyclerview.refreshLoad.DefaultLoadCreator;
 import com.example.demo.testgradle.recyclerview.refreshLoad.DefaultRefreshCreator;
@@ -50,6 +52,7 @@ String []photos={
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
+        DefaultNavigationBar defaultNavigationBar = new DefaultNavigationBar.Builder(this).setTitle("RecyclerView").builder();
         mDatas = new ArrayList<>();
         initData();
 
@@ -65,7 +68,8 @@ String []photos={
 //        mRecyclerView.addEmptyView(findViewById(R.id.empty_view));
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 4));
-        mRecyclerView.addItemDecoration(new GridLayoutDecoration(this, R.drawable.item_grid_divider, mRecyclerView));
+//        mRecyclerView.addItemDecoration(new GridLayoutDecoration(this, R.drawable.item_grid_divider, mRecyclerView));
+        mRecyclerView.addItemDecoration(new RecyclerGridSpaceDecoration(3));
         mAdapter = new HomeAdapter(RefreshLoadActivity.this, mDatas);
 //                mAdapter.
         mRecyclerView.setAdapter(mAdapter);
