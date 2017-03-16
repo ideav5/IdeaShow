@@ -1,10 +1,10 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/title_bar_bg_day</item>
+        <item name="colorPrimaryDark">@color/title_bar_bg_day</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
@@ -36,7 +36,7 @@
         <item name="android:paddingLeft">0.0dip</item>
         <item name="android:paddingRight">0.0dip</item>
         <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">44.0dip</item>
+        <item name="android:layout_height">44dp</item>
     </style>
 
     <style name="title_text_style">
