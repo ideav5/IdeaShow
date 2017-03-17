@@ -1,15 +1,16 @@
 package com.example.demo.testgradle;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.demo.testgradle.dialog.AlertDialog;
 import com.example.demo.testgradle.navigationbar.DefaultNavigationBar;
 import com.example.demo.testgradle.recyclerview.BaseUseActivity;
-import com.example.demo.testgradle.recyclerview.RefreshLoadActivity;
 import com.example.demo.testgradle.util.ToasUtils;
+import com.tencent.bugly.beta.Beta;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,6 +62,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, RefreshLoadActivity.class));
+            }
+        });
+        findViewById(R.id.btn_tinker).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Beta.applyTinkerPatch(MainActivity.this, Environment.getExternalStorageDirectory().getAbsolutePath() + "/patch_signed_7zip.apk");
             }
         });
 

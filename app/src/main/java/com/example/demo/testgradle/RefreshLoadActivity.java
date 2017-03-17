@@ -1,4 +1,4 @@
-package com.example.demo.testgradle.recyclerview;
+package com.example.demo.testgradle;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.example.demo.testgradle.R;
 import com.example.demo.testgradle.banner.BannerAdapter;
 import com.example.demo.testgradle.banner.BannerView;
 import com.example.demo.testgradle.banner.BannerViewPager;
@@ -43,7 +42,10 @@ String []photos={
         "http://7xi8d6.com1.z0.glb.clouddn.com/2017-03-08-17126216_1253875034703554_7520300169779216384_n.jpg",
         "http://7xi8d6.com1.z0.glb.clouddn.com/2017-03-06-tumblr_ombicf0KXi1vpybydo6_540.jpg",
         "http://7xi8d6.com1.z0.glb.clouddn.com/2017-02-28-15057157_446684252387131_4267811446148038656_n.jpg",
-        "http://7xi8d6.com1.z0.glb.clouddn.com/2017-02-22-16789541_749566998525174_1194252851069583360_n.jpg"
+        "http://7xi8d6.com1.z0.glb.clouddn.com/2017-02-22-16789541_749566998525174_1194252851069583360_n.jpg",
+        "https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png",
+        "http://img3.imgtn.bdimg.com/it/u=1329571997,1178095420&fm=23&gp=0.jpg",
+        "http://pic10.nipic.com/20101014/3367900_101327028816_2.jpg"
 
 
 };
@@ -90,7 +92,7 @@ String []photos={
 
             @Override
             public int getCount() {
-                return 5;
+                return photos.length;
             }
         });
         bannerview.setOnBannerItemClickListener(new BannerViewPager.BannerItemClickListener() {

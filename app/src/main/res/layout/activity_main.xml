@@ -13,15 +13,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/txt_base_use"/>
+
     <Button
         android:id="@+id/refresh_load_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/load_refresh"/>
+
     <Button
         android:id="@+id/btn_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Dialog"/>
+
+    <Button
+        android:id="@+id/btn_tinker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="加载补丁"/>
 
 </LinearLayout>
