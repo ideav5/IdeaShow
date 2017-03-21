@@ -19,8 +19,8 @@ public abstract class BaseRecyclerViewAdapter<DATA> extends RecyclerView.Adapter
     protected Context mContext;
     protected List<DATA> mListData;
     protected int layoutId;
-    private ItemClickListener mItemClickListener;
-    private ItemLongClickListener mItemLongClickListener;
+    private OnItemClickListener mOnItemClickListener;
+    private OnItemLongClickListener mOnItemLongClickListener;
     private LayoutInflater mLayoutInflater;
     private MultiTypeSupport mMultiTypeSupport;
 
@@ -60,20 +60,20 @@ public abstract class BaseRecyclerViewAdapter<DATA> extends RecyclerView.Adapter
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
-        if (mItemClickListener != null) {
+        if (mOnItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mItemClickListener.onItemClick(position);
+                    mOnItemClickListener.onItemClick(position);
                 }
             });
 
         }
-        if (mItemLongClickListener != null) {
+        if (mOnItemLongClickListener != null) {
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                   return mItemLongClickListener.onItemLongClick(position);
+                   return mOnItemLongClickListener.onItemLongClick(position);
                 }
             });
 
@@ -91,11 +91,11 @@ public abstract class BaseRecyclerViewAdapter<DATA> extends RecyclerView.Adapter
     }
 
 
-    public void setOnItemClickListener(ItemClickListener itemClickListener) {
-        this.mItemClickListener = itemClickListener;
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.mOnItemClickListener = onItemClickListener;
     }
 
-    public void setOnItemLongClickListener(ItemLongClickListener itemLongClickListener) {
-        this.mItemLongClickListener = itemLongClickListener;
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+        this.mOnItemLongClickListener = onItemLongClickListener;
     }
 }

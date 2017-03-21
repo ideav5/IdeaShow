@@ -1,4 +1,4 @@
-package com.example.demo.testgradle.dialog;
+package com.example.baselibrary.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -10,7 +10,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.demo.testgradle.R;
+import com.example.baselibrary.R;
 
 
 /**

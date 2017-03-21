@@ -1,4 +1,4 @@
-package com.example.demo.testgradle.dialog;
+package com.example.baselibrary.dialog;
 
 import android.content.Context;
 import android.content.DialogInterface;

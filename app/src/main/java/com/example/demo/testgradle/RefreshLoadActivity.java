@@ -15,13 +15,15 @@ import com.example.demo.testgradle.banner.BannerView;
 import com.example.demo.testgradle.banner.BannerViewPager;
 import com.example.demo.testgradle.navigationbar.DefaultNavigationBar;
 import com.example.demo.testgradle.recyclerview.base.BaseRecyclerViewAdapter;
-import com.example.demo.testgradle.recyclerview.base.ItemClickListener;
+import com.example.demo.testgradle.recyclerview.base.OnItemClickListener;
 import com.example.demo.testgradle.recyclerview.base.RecyclerGridSpaceDecoration;
 import com.example.demo.testgradle.recyclerview.base.ViewHolder;
 import com.example.demo.testgradle.recyclerview.refreshLoad.DefaultLoadCreator;
 import com.example.demo.testgradle.recyclerview.refreshLoad.DefaultRefreshCreator;
 import com.example.demo.testgradle.recyclerview.widget.LoaderRefreshRecyclerView;
 import com.example.demo.testgradle.recyclerview.widget.RefreshRecyclerView;
+import com.example.demo.testgradle.rx.RxBus;
+import com.example.demo.testgradle.util.LoggerUtils;
 import com.example.demo.testgradle.util.ToasUtils;
 
 import java.util.ArrayList;
@@ -128,11 +130,18 @@ String []photos={
         /*mAdapter = new HomeAdapter(RefreshLoadActivity.this, mDatas);
         mRecyclerView.setAdapter(mAdapter);*/
 
-        mRecyclerView.setOnItemClickListener(new ItemClickListener() {
+//        mRecyclerView.setOnItemClickListener(new OnItemClickListener() {
+//            @Override
+//            public void onItemClick(int position) {
+//                mDatas.clear();
+//                mAdapter.notifyDataSetChanged();
+//            }
+//        });
+        mRecyclerView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                mDatas.clear();
-                mAdapter.notifyDataSetChanged();
+                RxBus.getDefault().post("hhhh");
+                LoggerUtils.logger("6666666666666666666");
             }
         });
         // mRecyclerView.addItemDecoration(new DividerGridItemDecoration(this));

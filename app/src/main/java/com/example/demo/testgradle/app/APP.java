@@ -29,7 +29,7 @@ public class APP extends TinkerApplicationLike {
         Logger.init();
 //        CrashReport.initCrashReport(getApplicationContext(), "dc249d1911", true);
 //        CrashReport.setUserId("9527");
-        Bugly.setIsDevelopmentDevice(getApplication(), true);
+//        Bugly.setIsDevelopmentDevice(getApplication(), true);
         Bugly.init(getApplication(),"7b9ec92055",true);
         FreelineCore.init(getApplication());
     }

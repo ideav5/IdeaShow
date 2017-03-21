@@ -6,8 +6,8 @@ import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.demo.testgradle.recyclerview.base.ItemClickListener;
-import com.example.demo.testgradle.recyclerview.base.ItemLongClickListener;
+import com.example.demo.testgradle.recyclerview.base.OnItemClickListener;
+import com.example.demo.testgradle.recyclerview.base.OnItemLongClickListener;
 
 /**
  *
@@ -71,11 +71,11 @@ public class WrapRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         mAdapter.onBindViewHolder(holder,adapterPosition);
 
         // 设置点击和长按事件
-        if (mItemClickListener != null) {
+        if (mOnItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mItemClickListener.onItemClick(adapterPosition);
+                    mOnItemClickListener.onItemClick(adapterPosition);
                 }
             });
         }
@@ -178,14 +178,14 @@ public class WrapRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     /***************
      * 给条目设置点击和长按事件
      *********************/
-    public ItemClickListener mItemClickListener;
-    public ItemLongClickListener mLongClickListener;
+    public OnItemClickListener mOnItemClickListener;
+    public OnItemLongClickListener mLongClickListener;
 
-    public void setOnItemClickListener(ItemClickListener itemClickListener) {
-        this.mItemClickListener = itemClickListener;
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.mOnItemClickListener = onItemClickListener;
     }
 
-    public void setOnLongClickListener(ItemLongClickListener longClickListener) {
+    public void setOnLongClickListener(OnItemLongClickListener longClickListener) {
         this.mLongClickListener = longClickListener;
     }
 }

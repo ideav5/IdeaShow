@@ -6,8 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.example.demo.testgradle.recyclerview.base.ItemClickListener;
-import com.example.demo.testgradle.recyclerview.base.ItemLongClickListener;
+import com.example.demo.testgradle.recyclerview.base.OnItemClickListener;
+import com.example.demo.testgradle.recyclerview.base.OnItemLongClickListener;
 
 /**
  * Created by guilianghuang on 2017/3/12.
@@ -51,11 +51,11 @@ public class WrapRecyclerView extends RecyclerView {
         super.setAdapter(mWrapAdapter);
         mAdapter.registerAdapterDataObserver(mAdapterDataObserver);
 
-        if (mItemClickListener != null) {
-            mWrapAdapter.setOnItemClickListener(mItemClickListener);
-        }if (mLongClickListener != null) {
-            mWrapAdapter.setOnLongClickListener(mLongClickListener);
-        }
+//        if (mOnItemClickListener != null) {
+//            mWrapAdapter.setOnItemClickListener(mOnItemClickListener);
+//        }if (mLongClickListener != null) {
+//            mWrapAdapter.setOnLongClickListener(mLongClickListener);
+//        }
 
 
     }
@@ -145,15 +145,22 @@ public class WrapRecyclerView extends RecyclerView {
     /***************
      * 给条目设置点击和长按事件
      *********************/
-    public ItemClickListener mItemClickListener;
-    public ItemLongClickListener mLongClickListener;
+    public OnItemClickListener mOnItemClickListener;
+    public OnItemLongClickListener mLongClickListener;
 
-    public void setOnItemClickListener(ItemClickListener itemClickListener) {
-        this.mItemClickListener = itemClickListener;
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.mOnItemClickListener = onItemClickListener;
+        if (mOnItemClickListener != null) {
+            mWrapAdapter.setOnItemClickListener(mOnItemClickListener);
+        }
+
     }
 
-    public void setOnLongClickListener(ItemLongClickListener longClickListener) {
+    public void setOnLongClickListener(OnItemLongClickListener longClickListener) {
         this.mLongClickListener = longClickListener;
+        if (mLongClickListener != null) {
+            mWrapAdapter.setOnLongClickListener(mLongClickListener);
+        }
     }
 
 
