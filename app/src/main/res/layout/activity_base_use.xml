@@ -5,7 +5,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:padding="10dp"
-              tools:context="com.example.demo.testgradle.MainActivity">
+              tools:context="com.example.demo.testgradle.activity.MainActivity">
 
     <!--<Recy-->
     <com.example.demo.testgradle.recyclerview.widget.WrapRecyclerView

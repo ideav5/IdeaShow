@@ -1,8 +1,7 @@
-package com.example.demo.testgradle.recyclerview;
+package com.example.demo.testgradle.activity;
 
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
@@ -10,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.demo.testgradle.R;
+import com.example.demo.testgradle.recyclerview.ListAdapter;
 import com.example.demo.testgradle.recyclerview.base.GridLayoutDecoration;
 import com.example.demo.testgradle.recyclerview.widget.WrapRecyclerView;
 
@@ -36,7 +36,7 @@ public class BaseUseActivity extends AppCompatActivity {
 //        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(adapter);
         View headerView = View.inflate(this, R.layout.normal_dialog_layout, null);
-        headerView.setBackgroundColor(Color.GREEN);
+//        headerView.setBackgroundColor(Color.GREEN);
         mRecyclerView.addHeaderView(headerView);
         //添加分割线
 //        mRecyclerView.addItemDecoration(new LinearLayoutDecoration(this,R.drawable.item_divider));

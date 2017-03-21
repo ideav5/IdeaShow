@@ -5,7 +5,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context="com.example.demo.testgradle.MainActivity">
+              tools:context="com.example.demo.testgradle.activity.MainActivity">
 
 
     <Button
@@ -25,7 +25,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Dialog"/>
-
+    <Button
+        android:id="@+id/btn_drag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="拖拽RecyclerView"/>
     <Button
         android:id="@+id/btn_tinker"
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.example.demo.testgradle;
+package com.example.demo.testgradle.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.demo.testgradle.R;
 import com.example.demo.testgradle.banner.BannerAdapter;
 import com.example.demo.testgradle.banner.BannerView;
 import com.example.demo.testgradle.banner.BannerViewPager;

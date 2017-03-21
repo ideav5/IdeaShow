@@ -1,4 +1,4 @@
-package com.example.demo.testgradle;
+package com.example.demo.testgradle.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.example.demo.testgradle.R;
 import com.example.demo.testgradle.dialog.AlertDialog;
 import com.example.demo.testgradle.navigationbar.DefaultNavigationBar;
-import com.example.demo.testgradle.recyclerview.BaseUseActivity;
 import com.example.demo.testgradle.rx.RxBus;
 import com.example.demo.testgradle.util.LoggerUtils;
 import com.example.demo.testgradle.util.ToasUtils;
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.base_btn, R.id.refresh_load_btn, R.id.btn_dialog, R.id.btn_tinker})
+    @OnClick({R.id.base_btn, R.id.refresh_load_btn, R.id.btn_dialog, R.id.btn_drag, R.id.btn_tinker})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.base_btn:
@@ -71,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.refresh_load_btn:
                 startActivity(new Intent(MainActivity.this, RefreshLoadActivity.class));
+                break;
+            case R.id.btn_drag:
+                startActivity(new Intent(MainActivity.this, SwipeRecyclerActivity.class));
                 break;
             case R.id.btn_dialog:
                 final AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this)
