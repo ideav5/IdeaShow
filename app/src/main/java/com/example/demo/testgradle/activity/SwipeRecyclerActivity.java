@@ -23,6 +23,7 @@ import java.util.List;
 public class SwipeRecyclerActivity extends AppCompatActivity {
 
     private WrapRecyclerView mRecyclerView;
+    private List<String> mStringList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +32,10 @@ public class SwipeRecyclerActivity extends AppCompatActivity {
         mRecyclerView = (WrapRecyclerView) findViewById(R.id.rec_view);
 //        mRecyclerView
         String[] listName = getResources().getStringArray(R.array.list_name);
-        final List<String> stringList = Arrays.asList(listName);
+        mStringList = Arrays.asList(listName);
 
 
-        ListAdapter adapter = new ListAdapter(this,stringList);
+        ListAdapter adapter = new ListAdapter(this, mStringList);
 //        RecyclerView.LayoutManager layoutManager= LinearLayoutManager;
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
 //        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -45,12 +46,12 @@ public class SwipeRecyclerActivity extends AppCompatActivity {
         //添加分割线
         mRecyclerView.addItemDecoration(new GridLayoutDecoration(this,R.drawable.item_grid_divider,mRecyclerView));
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeCallback<String>(stringList,adapter));
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeCallback<String>(mStringList,adapter));
         itemTouchHelper.attachToRecyclerView(mRecyclerView);
         mRecyclerView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                ToasUtils.toast(SwipeRecyclerActivity.this,position+"==========="+stringList.get(position));
+                ToasUtils.toast(SwipeRecyclerActivity.this,position+"==========="+ mStringList.get(position));
             }
         });
 
