@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.example.demo.testgradle.recyclerview.base.OnItemClickListener;
 import com.example.demo.testgradle.recyclerview.base.OnItemLongClickListener;
+import com.example.demo.testgradle.util.LoggerUtils;
 
 /**
  * Created by guilianghuang on 2017/3/12.
@@ -95,6 +96,7 @@ public class WrapRecyclerView extends RecyclerView {
         @Override
         public void onChanged() {
             if (mAdapter==null)return;
+            LoggerUtils.logger("-----onChanged--------");
             if (mWrapAdapter != mAdapter) {
                 mWrapAdapter.notifyDataSetChanged();
             }
@@ -104,6 +106,7 @@ public class WrapRecyclerView extends RecyclerView {
         @Override
         public void onItemRangeChanged(int positionStart, int itemCount) {
             if (mAdapter==null)return;
+            LoggerUtils.logger(positionStart+"-----onItemRangeChanged--------"+itemCount);
             if (mWrapAdapter != mAdapter) {
                 mWrapAdapter.notifyItemRangeChanged(positionStart, itemCount);
             }
@@ -112,6 +115,7 @@ public class WrapRecyclerView extends RecyclerView {
         @Override
         public void onItemRangeChanged(int positionStart, int itemCount, Object payload) {
             if (mAdapter==null)return;
+            LoggerUtils.logger(positionStart+"-----onItemRangeChanged--------");
             if (mWrapAdapter != mAdapter) {
                 mWrapAdapter.notifyItemRangeChanged(positionStart, itemCount, payload);
             }
@@ -120,6 +124,7 @@ public class WrapRecyclerView extends RecyclerView {
         @Override
         public void onItemRangeInserted(int positionStart, int itemCount) {
             if (mAdapter==null)return;
+            LoggerUtils.logger(positionStart+"-----onItemRangeInserted--------"+ itemCount);
             if (mWrapAdapter != mAdapter) {
                 mWrapAdapter.notifyItemRangeInserted(positionStart, itemCount);
             }
@@ -128,6 +133,7 @@ public class WrapRecyclerView extends RecyclerView {
         @Override
         public void onItemRangeRemoved(int positionStart, int itemCount) {
             if (mAdapter==null)return;
+            LoggerUtils.logger(positionStart+"-----onItemRangeRemoved--------"+itemCount);
             if (mWrapAdapter != mAdapter) {
                 mWrapAdapter.notifyItemRangeRemoved(positionStart, itemCount);
             }

@@ -17,6 +17,7 @@ import com.example.demo.testgradle.recyclerview.base.SwipeCallback;
 import com.example.demo.testgradle.recyclerview.widget.WrapRecyclerView;
 import com.example.demo.testgradle.util.ToasUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,7 +33,12 @@ public class SwipeRecyclerActivity extends AppCompatActivity {
         mRecyclerView = (WrapRecyclerView) findViewById(R.id.rec_view);
 //        mRecyclerView
         String[] listName = getResources().getStringArray(R.array.list_name);
-        mStringList = Arrays.asList(listName);
+        mStringList = new ArrayList<>();
+        for (int i = 0; i < listName.length; i++) {
+            mStringList.add(listName[i]);
+
+        }
+//        mStringList = Arrays.asList(listName);
 
 
         ListAdapter adapter = new ListAdapter(this, mStringList);

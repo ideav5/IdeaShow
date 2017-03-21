@@ -17,7 +17,7 @@ import java.util.List;
 
 public class SwipeCallback<T> extends ItemTouchHelper.Callback {
 
-    private final RecyclerView.Adapter mAdapter;
+    private  RecyclerView.Adapter mAdapter;
     private List<T> mDate;
 
     public SwipeCallback(List<T> date, RecyclerView.Adapter adapter) {
@@ -69,8 +69,9 @@ public class SwipeCallback<T> extends ItemTouchHelper.Callback {
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
 // 获取当前删除的位置
         int position = viewHolder.getAdapterPosition();
+        LoggerUtils.logger(position+"-----"+direction);
         mDate.remove(position);
-
+        LoggerUtils.logger(mDate+"-----");
         // adapter 更新notify当前位置删除
         mAdapter.notifyItemRemoved(position);
     }
