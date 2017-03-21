@@ -36,7 +36,7 @@ public class SwipeCallback<T> extends ItemTouchHelper.Callback {
         } else {
             dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
         }
-        return makeFlag(swipeFlags, dragFlags);
+        return makeMovementFlags(dragFlags, swipeFlags);
 
     }
 
