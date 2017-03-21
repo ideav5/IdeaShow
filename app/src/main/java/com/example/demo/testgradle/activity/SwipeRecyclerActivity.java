@@ -34,7 +34,7 @@ public class SwipeRecyclerActivity extends AppCompatActivity {
         final List<String> stringList = Arrays.asList(listName);
 
 
-        ListAdapter adapter = new ListAdapter(stringList, this);
+        ListAdapter adapter = new ListAdapter(this,stringList);
 //        RecyclerView.LayoutManager layoutManager= LinearLayoutManager;
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
 //        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));

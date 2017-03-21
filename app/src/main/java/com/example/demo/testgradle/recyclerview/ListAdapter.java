@@ -1,13 +1,10 @@
 package com.example.demo.testgradle.recyclerview;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.demo.testgradle.R;
+import com.example.demo.testgradle.recyclerview.base.BaseRecyclerViewAdapter;
+import com.example.demo.testgradle.recyclerview.base.ViewHolder;
 
 import java.util.List;
 
@@ -15,45 +12,16 @@ import java.util.List;
  * Created by guilianghuang on 2017/2/25.
  */
 
-public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> {
-
-    Context mContext;
-    List<String> mStringList;
-
-    public ListAdapter(List<String> stringList, Context context) {
-        mStringList = stringList;
-        mContext = context;
+public class ListAdapter extends BaseRecyclerViewAdapter<String> {
+    public ListAdapter(Context context, List<String> listData) {
+        super(context, listData, R.layout.item_list);
     }
 
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_list, parent, false);
-        MyViewHolder holder = new MyViewHolder(inflate);
-        return holder;
+    public void convert(ViewHolder holder, String s) {
+        holder.setText(R.id.item_tv,s);
     }
 
-    @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.mTextView.setText(mStringList.get(position));
-    }
-
-    @Override
-    public int getItemCount() {
-        return mStringList.size();
-    }
-
-
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-
-
-        private final TextView mTextView;
-
-        public MyViewHolder(View itemView) {
-            super(itemView);
-            mTextView = (TextView) itemView.findViewById(R.id.item_tv);
-
-        }
-    }
 
 }
