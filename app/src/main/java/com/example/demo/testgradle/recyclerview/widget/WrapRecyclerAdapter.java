@@ -175,6 +175,12 @@ public class WrapRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
+
+    public int  getDatePosition(int wrapIndex) {
+
+       return wrapIndex - mHeaderViews.size();
+    }
+
     /***************
      * 给条目设置点击和长按事件
      *********************/

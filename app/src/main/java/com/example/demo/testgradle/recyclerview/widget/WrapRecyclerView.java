@@ -49,16 +49,16 @@ public class WrapRecyclerView extends RecyclerView {
             mWrapAdapter = new WrapRecyclerAdapter(adapter);
         }
         mWrapAdapter.adjustSpanSize(this);
-        super.setAdapter(mWrapAdapter);
+
         mAdapter.registerAdapterDataObserver(mAdapterDataObserver);
 
-//        if (mOnItemClickListener != null) {
-//            mWrapAdapter.setOnItemClickListener(mOnItemClickListener);
-//        }if (mLongClickListener != null) {
-//            mWrapAdapter.setOnLongClickListener(mLongClickListener);
-//        }
+        if (mOnItemClickListener != null) {
+            mWrapAdapter.setOnItemClickListener(mOnItemClickListener);
+        }if (mLongClickListener != null) {
+            mWrapAdapter.setOnLongClickListener(mLongClickListener);
+        }
 
-
+        super.setAdapter(mWrapAdapter);
     }
 
 

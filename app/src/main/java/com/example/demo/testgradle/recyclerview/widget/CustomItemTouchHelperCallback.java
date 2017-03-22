@@ -29,7 +29,7 @@ public class CustomItemTouchHelperCallback extends ItemTouchHelper.Callback {
             // 如果是Grid布局，则不能滑动，只能上下左右拖动
             dragFlags =
                     ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
-            swipeFlags = 0;
+            swipeFlags =ItemTouchHelper.LEFT ;
         } else if (layoutManager instanceof LinearLayoutManager) {
             // 如果是纵向Linear布局，则能上下拖动，左右滑动
             if (((LinearLayoutManager) layoutManager).getOrientation() == LinearLayoutManager.VERTICAL) {
