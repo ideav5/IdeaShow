@@ -1,5 +1,7 @@
 package com.example.demo.testgradle.recyclerview.widget;
 
+import android.graphics.Color;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -89,5 +91,25 @@ public class CustomItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
     public void setCanSwipe(boolean canSwipe) {
         this.canSwipe = canSwipe;
+    }
+
+    @Override
+    public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
+        if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
+            // ItemTouchHelper.ACTION_STATE_IDLE 看看源码解释就能理解了
+            // 侧滑或者拖动的时候背景设置为灰色
+            viewHolder.itemView.setBackgroundColor(Color.GRAY);
+        }
+    }
+
+
+    /**
+     * 回到正常状态的时候回调
+     */
+    @Override
+    public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+        // 正常默认状态下背景恢复默认
+        viewHolder.itemView.setBackgroundColor(0);
+        ViewCompat.setTranslationX(viewHolder.itemView,0);
     }
 }

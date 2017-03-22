@@ -8,7 +8,7 @@ import com.tencent.tinker.loader.shareutil.ShareConstants;
  */
 public class SampleApplication extends TinkerApplication {
     public SampleApplication() {
-        super(ShareConstants.TINKER_ENABLE_ALL, "com.example.demo.testgradle.app.APP",
+        super(ShareConstants.TINKER_ENABLE_ALL, "com.example.demo.testgradle.app.App",
                 "com.tencent.tinker.loader.TinkerLoader", false);
     }
 }

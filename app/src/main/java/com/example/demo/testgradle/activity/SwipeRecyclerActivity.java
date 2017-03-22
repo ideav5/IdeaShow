@@ -14,12 +14,11 @@ import com.example.demo.testgradle.recyclerview.base.GridLayoutDecoration;
 import com.example.demo.testgradle.recyclerview.base.OnItemClickListener;
 import com.example.demo.testgradle.recyclerview.widget.CustomItemTouchHelperCallback;
 import com.example.demo.testgradle.recyclerview.widget.OnItemTouchCallbackListener;
+import com.example.demo.testgradle.recyclerview.widget.WrapRecyclerAdapter;
 import com.example.demo.testgradle.recyclerview.widget.WrapRecyclerView;
 import com.example.demo.testgradle.util.LoggerUtils;
-import com.example.demo.testgradle.util.ToasUtils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class SwipeRecyclerActivity extends AppCompatActivity {
@@ -64,29 +63,33 @@ public class SwipeRecyclerActivity extends AppCompatActivity {
 //                WrapRecyclerAdapter adapter = (WrapRecyclerAdapter) mRecyclerView.getAdapter();
 //                int fromPosition = adapter.getDatePosition(viewHolder.getAdapterPosition());
 //                int targetPosition = adapter.getDatePosition(target.getAdapterPosition());
-                if (fromPosition < targetPosition) {
-                    for (int i = fromPosition; i < targetPosition; i++) {
-                        LoggerUtils.logger(i+1+"=========<<<<"+i);
-                        Collections.swap(mStringList, i, i + 1);// 改变实际的数据集
-                    }
-                } else {
-                    for (int i = fromPosition; i > targetPosition; i--) {
-                        LoggerUtils.logger(i-1+"=========<<<<"+i);
-                        Collections.swap(mStringList, i, i - 1);// 改变实际的数据集
-                    }
-                }
+//                if (fromPosition < targetPosition) {
+//                    for (int i = fromPosition; i < targetPosition; i++) {
+//                        LoggerUtils.logger(i+1+"=========<<<<"+i);
+//                        Collections.swap(mStringList, i, i + 1);// 改变实际的数据集
+//                    }
+//                } else {
+//                    for (int i = fromPosition; i > targetPosition; i--) {
+//                        LoggerUtils.logger(i-1+"=========<<<<"+i);
+//                        Collections.swap(mStringList, i, i - 1);// 改变实际的数据集
+//                    }
+//                }
                 mListAdapter.notifyItemMoved(fromPosition, targetPosition);
                LoggerUtils.logger(recyclerView.getAdapter()+"---------onMove--------"+fromPosition+"------targetPosition------"+targetPosition);
-                    return true;
+//                mListAdapter.notifyDataSetChanged();
+
+                return true;
             }
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 int adapterPosition = viewHolder.getAdapterPosition();
                 LoggerUtils.logger(adapterPosition+"-----------onSwiped-----");
-//                int datePosition = ((WrapRecyclerAdapter) mRecyclerView.getAdapter()).getDatePosition(adapterPosition);
-//                mStringList.remove(datePosition);
-                mListAdapter.notifyItemRemoved(adapterPosition);
+                int datePosition = ((WrapRecyclerAdapter) mRecyclerView.getAdapter()).getDatePosition(adapterPosition);
+                mStringList.remove(datePosition);
+//                mListAdapter.GET().remove(position);
+                mListAdapter.notifyDataSetChanged();
+//                mListAdapter.notifyItemRemoved(adapterPosition);
             }
         });
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemTouchHelperCallback);
@@ -94,7 +97,7 @@ public class SwipeRecyclerActivity extends AppCompatActivity {
         mRecyclerView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                ToasUtils.toast(SwipeRecyclerActivity.this,position+"==========="+ mStringList.get(position));
+                LoggerUtils.logger(position+"==========="+ mStringList.get(position)+"mStringList"+mStringList);
             }
         });
         LoggerUtils.logger(mRecyclerView.getAdapter()+"-----------mListAdapter-----"+mListAdapter);
