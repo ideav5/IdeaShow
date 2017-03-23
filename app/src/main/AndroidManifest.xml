@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.READ_LOGS"/>
 
     <application
-        android:name="com.example.demo.testgradle.app.SampleApplication"
+        android:name=".app.SampleApplication"
         android:allowBackup="true"
         android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
@@ -28,19 +28,21 @@
                 android:resource="@xml/provider_paths"/>
         </provider>
 
-        <activity android:name="com.example.demo.testgradle.activity.MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.example.demo.testgradle.activity.BaseUseActivity"/>
-        <activity android:name="com.example.demo.testgradle.activity.RefreshLoadActivity"/>
+        <activity android:name=".activity.BaseUseActivity"/>
+        <activity android:name=".activity.RefreshLoadActivity"/>
         <activity android:name=".activity.SwipeRecyclerActivity"/>
         <activity
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
             android:theme="@android:style/Theme.Translucent"/>
+        <activity android:name=".activity.RxJavaActivity">
+        </activity>
     </application>
 
 </manifest>

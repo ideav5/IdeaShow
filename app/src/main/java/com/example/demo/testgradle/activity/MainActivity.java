@@ -16,10 +16,14 @@ import com.example.demo.testgradle.util.LoggerUtils;
 import com.example.demo.testgradle.util.ToasUtils;
 import com.tencent.bugly.beta.Beta;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import rx.Observable;
 import rx.Observer;
+import rx.functions.Action1;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.base_btn, R.id.refresh_load_btn, R.id.btn_dialog, R.id.btn_drag, R.id.btn_tinker})
+    @OnClick({R.id.base_btn, R.id.refresh_load_btn, R.id.btn_dialog, R.id.btn_drag, R.id.btn_tinker, R.id.btn_rxjava})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.base_btn:
@@ -104,6 +108,15 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btn_tinker:
                 Beta.applyTinkerPatch(MainActivity.this, Environment.getExternalStorageDirectory().getAbsolutePath() + "/patch_signed_7zip.apk");
+                break;
+            case R.id.btn_rxjava:
+                Observable.timer(2, TimeUnit.SECONDS).subscribe(new Action1<Long>() {
+                    @Override
+                    public void call(Long aLong) {
+                        LoggerUtils.logger("Time===" + aLong);
+                        startActivity(new Intent(MainActivity.this,RxJavaActivity.class));
+                    }
+                });
                 break;
         }
     }
