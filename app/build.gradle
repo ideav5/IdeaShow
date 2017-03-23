@@ -127,7 +127,7 @@ dependencies {
     compile 'org.sufficientlysecure:html-textview:3.1'
     compile 'com.github.chrisbanes.photoview:library:1.2.4'
     compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+//    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.2.1'
     debugCompile 'com.github.moduth:blockcanary-android:1.2.1'
