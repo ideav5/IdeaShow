@@ -26,6 +26,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.Observable;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -34,6 +35,7 @@ public class RxJavaActivity extends AppCompatActivity {
     @BindView(R.id.tv_show_time)
     TextView mTvShowTime;
     private Subscriber<Long> mSubscriber;
+    private Subscription mSubscription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class RxJavaActivity extends AppCompatActivity {
 
 
 
-        final List list = Arrays.asList("one", "two", "three", "four", "five");
+         List list = Arrays.asList("one", "two", "three", "four", "five");
         mSubscriber = new Subscriber<Long>() {
             @Override
             public void onCompleted() {
@@ -59,14 +61,13 @@ public class RxJavaActivity extends AppCompatActivity {
             @Override
             public void onNext(Long l) {
                 int i = l.intValue();
-                if (i == list.size()) {
-                    this.unsubscribe();
-                    onCompleted();
-                }
-                mTvShowTime.setText("时间:  " + l + "  array" + list.get(i));
+//                        if (i == list.size()) {
+//                            this.unsubscribe();
+//                            onCompleted();
+//                        }
+                mTvShowTime.setText("时间:  " + l + "  array" );
             }
         };
-
 
 //        RxView.clicks(findViewById(R.id.btn_throttle))
 //                .throttleFirst(1, TimeUnit.SECONDS)
@@ -75,11 +76,13 @@ public class RxJavaActivity extends AppCompatActivity {
 //                });
     }
 
+    boolean isSend = true;
+
     @OnClick({R.id.btn_start, R.id.btn_rx1, R.id.btn_rx2, R.id.btn_rx3})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_start:
-                Observable.interval(2, 2, TimeUnit.SECONDS)
+                mSubscription = Observable.interval(2, 2, TimeUnit.SECONDS)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(mSubscriber);
@@ -101,7 +104,7 @@ public class RxJavaActivity extends AppCompatActivity {
                 mapParms.put("tokenCustomerId", "");
                 mapParms.put("job", "");
                 mapParms.put("chatTheme", "");
-                HttpMethods.getInstance().getListDate(mapParms).subscribe(new MyObserver<List<ListViewBean>>() {
+                Subscription subscribe = HttpMethods.getInstance().getListDate(mapParms).subscribe(new MyObserver<List<ListViewBean>>() {
                     @Override
                     protected void onError(ApiException ex) {
                         LoggerUtils.logger(ex.getCode() + "===========ApiException=====" + ex.getDisplayMessage());
@@ -111,7 +114,16 @@ public class RxJavaActivity extends AppCompatActivity {
                     @Override
                     public void onStart() {
                         super.onStart();
-                        LoggerUtils.logger("===========onStart=====");
+                        LoggerUtils.logger("===========onStart=====" + isSend);
+                        if (isSend) {
+                            this.unsubscribe();
+                            isSend = false;
+                        } else {
+                            isSend = true;
+
+                        }
+
+
                     }
 
                     @Override
@@ -124,11 +136,13 @@ public class RxJavaActivity extends AppCompatActivity {
                         LoggerUtils.logger("=====1======onNext=====");
                         SystemClock.sleep(1000);
                         LoggerUtils.logger("====2=======onNext=====");
-                        mTvShowTime.setText(listViewBeen.toString());
+                        mTvShowTime.setText(SystemClock.currentThreadTimeMillis()+listViewBeen.toString());
                     }
                 });
                 break;
             case R.id.btn_rx2:
+//                mSubscriber.
+
                 break;
             case R.id.btn_rx3:
                 break;

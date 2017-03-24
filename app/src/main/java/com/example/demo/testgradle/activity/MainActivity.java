@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.demo.testgradle.R;
 import com.example.demo.testgradle.dialog.AlertDialog;
@@ -14,6 +15,8 @@ import com.example.demo.testgradle.navigationbar.DefaultNavigationBar;
 import com.example.demo.testgradle.rx.RxBus;
 import com.example.demo.testgradle.util.LoggerUtils;
 import com.example.demo.testgradle.util.ToasUtils;
+import com.jakewharton.rxbinding.view.RxView;
+import com.jakewharton.rxbinding.widget.RxTextView;
 import com.tencent.bugly.beta.Beta;
 
 import java.util.concurrent.TimeUnit;
@@ -38,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     Button mBtnTinker;
     @BindView(R.id.activity_main)
     LinearLayout mActivityMain;
+    @BindView(R.id.btn_rxjava)
+    View mBtnRxjava;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +70,14 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        TextView view = new TextView(this);
+        RxTextView.textChanges(view).skip(1).take(1).subscribe();
+
+//        findViewById()
+//
+        RxView.clicks(mBtnRxjava) .throttleFirst( 2 , TimeUnit.SECONDS )   //两秒钟之内只取一个点击事件，防抖操作
+                .subscribe() ;
+//        RxView.clicks(mBtnRxjava)
     }
 
     @OnClick({R.id.base_btn, R.id.refresh_load_btn, R.id.btn_dialog, R.id.btn_drag, R.id.btn_tinker, R.id.btn_rxjava})
@@ -114,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void call(Long aLong) {
                         LoggerUtils.logger("Time===" + aLong);
-                        startActivity(new Intent(MainActivity.this,RxJavaActivity.class));
+                        startActivity(new Intent(MainActivity.this, RxJavaActivity.class));
                     }
                 });
                 break;
