@@ -76,11 +76,22 @@ public class MainActivity extends AppCompatActivity {
 //        findViewById()
 //
         RxView.clicks(mBtnRxjava) .throttleFirst( 2 , TimeUnit.SECONDS )   //两秒钟之内只取一个点击事件，防抖操作
-                .subscribe() ;
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        Observable.timer(2, TimeUnit.SECONDS).subscribe(new Action1<Long>() {
+                            @Override
+                            public void call(Long aLong) {
+                                LoggerUtils.logger("Time===" + aLong);
+                                startActivity(new Intent(MainActivity.this, RxJavaActivity.class));
+                            }
+                        });
+                    }
+                }) ;
 //        RxView.clicks(mBtnRxjava)
     }
 
-    @OnClick({R.id.base_btn, R.id.refresh_load_btn, R.id.btn_dialog, R.id.btn_drag, R.id.btn_tinker, R.id.btn_rxjava})
+    @OnClick({R.id.base_btn, R.id.refresh_load_btn, R.id.btn_dialog, R.id.btn_drag, R.id.btn_tinker/*, R.id.btn_rxjava*/})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.base_btn:

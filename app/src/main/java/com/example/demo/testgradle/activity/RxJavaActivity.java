@@ -14,6 +14,7 @@ import com.example.demo.testgradle.http.base.exception.ApiException;
 import com.example.demo.testgradle.http.base.net.MyObserver;
 import com.example.demo.testgradle.navigationbar.DefaultNavigationBar;
 import com.example.demo.testgradle.util.LoggerUtils;
+import com.example.demo.testgradle.util.ToasUtils;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -28,6 +29,7 @@ import rx.Observable;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 public class RxJavaActivity extends AppCompatActivity {
@@ -37,14 +39,14 @@ public class RxJavaActivity extends AppCompatActivity {
     private Subscriber<Long> mSubscriber;
     private Subscription mSubscription;
 
+    int a=100;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx_java);
         ButterKnife.bind(this);
         new DefaultNavigationBar.Builder(this).setTitle("RxJava").builder();
-
-
 
          List list = Arrays.asList("one", "two", "three", "four", "five");
         mSubscriber = new Subscriber<Long>() {
@@ -74,6 +76,8 @@ public class RxJavaActivity extends AppCompatActivity {
 //                .subscribe(aVoid -> {
 //                    System.out.println("click");
 //                });
+
+
     }
 
     boolean isSend = true;
@@ -142,9 +146,15 @@ public class RxJavaActivity extends AppCompatActivity {
                 break;
             case R.id.btn_rx2:
 //                mSubscriber.
-
+                Observable.just(a,1,3).subscribe(new Action1<Integer>() {
+                    @Override
+                    public void call(Integer integer) {
+                        ToasUtils.toast(RxJavaActivity.this,"wo 改变了"+integer);
+                    }
+                });
                 break;
             case R.id.btn_rx3:
+                a++;
                 break;
         }
     }
