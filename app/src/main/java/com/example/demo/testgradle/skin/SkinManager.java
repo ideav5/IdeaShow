@@ -87,7 +87,7 @@ public class SkinManager {
         for (ISkinChangeListener skinChangeListener : mSkinViews.keySet()) {
             List<SkinView> skinViews = mSkinViews.get(skinChangeListener);
             for (SkinView skinView : skinViews) {
-                skinView.skin();
+                skinView.skin();//改变主题
             }
             skinChangeListener.changeSkin(path);
         }
@@ -137,12 +137,7 @@ public class SkinManager {
         return mSkinResources;
     }
 
-    /**
-     * 注册监听回调
-     */
-    public void register(List<SkinView> skinViews, ISkinChangeListener skinChangeListener) {
-        mSkinViews.put(skinChangeListener, skinViews);
-    }
+
 
     public List<SkinView> getSkinViews(Activity activity) {
         return mSkinViews.get(activity);
@@ -162,13 +157,14 @@ public class SkinManager {
     public void unregister(ISkinChangeListener skinChangeListener) {
         mSkinViews.remove(skinChangeListener);
     }
-
-    public void registerSkinView(List<SkinView> skinViews, BaseSkinActivity baseSkinActivity) {
-
-
+    /**
+     * 注册监听回调
+     */
+    public void registerSkinView(List<SkinView> skinViews, ISkinChangeListener skinChangeListener) {
+        mSkinViews.put(skinChangeListener, skinViews);
     }
 
-    public boolean needChangeSkin() {
+    public boolean needChangeSkin() {//是否需要换肤
         return false;
     }
 }

@@ -39,7 +39,7 @@ public class SkinSupport {
 
                 String resName = getResName(context, attributeValue);
 
-                if (TextUtils.isDigitsOnly(resName)) {
+                if (TextUtils.isEmpty(resName)) {
                     continue;
                 }
                 SkinAttr skinAttr=new SkinAttr(resName,skinType);

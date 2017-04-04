@@ -20,7 +20,7 @@ import java.util.List;
  * Created by guilianghuang on 2017/4/4.
  */
 
-public class BaseSkinActivity extends AppCompatActivity implements LayoutInflaterFactory {
+public class BaseSkinActivity extends AppCompatActivity implements LayoutInflaterFactory, ISkinChangeListener {
     // 创建View的Inflater
     private SkinCompatViewInflater mSkinCompatViewInflater;
 
@@ -107,5 +107,17 @@ public class BaseSkinActivity extends AppCompatActivity implements LayoutInflate
             }
             parent = parent.getParent();
         }
+    }
+
+    @Override
+    public void changeSkin(String path) {
+        //自定义控件的主题改变
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        SkinManager.getInstance().unregister(this);
+        super.onDestroy();
     }
 }
