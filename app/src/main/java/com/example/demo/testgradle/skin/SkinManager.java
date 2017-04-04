@@ -143,10 +143,6 @@ public class SkinManager {
         return mSkinViews.get(activity);
     }
 
-    public boolean isChangeSkin() {
-        return SkinPreUtils.getInstance(mContext).needChangeSkin();
-    }
-
     public void changeSkin(SkinView skinView) {
         skinView.skin();
     }
@@ -165,6 +161,6 @@ public class SkinManager {
     }
 
     public boolean needChangeSkin() {//是否需要换肤
-        return false;
+        return SkinPreUtils.getInstance(mContext).needChangeSkin();
     }
 }

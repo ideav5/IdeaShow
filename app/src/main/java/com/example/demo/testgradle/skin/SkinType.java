@@ -56,7 +56,7 @@ import android.widget.TextView;
         return SkinManager.getInstance().getSkinResources();
     }
 
-    private final String mResName;
+    private  String mResName;
 
     SkinType(String resName) {
         this.mResName=resName;
