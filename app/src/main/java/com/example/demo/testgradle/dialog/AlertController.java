@@ -69,6 +69,10 @@ class AlertController {
         public int mViewLayoutId;//布局的ID
         //存放字体的修改
         public SparseArray<CharSequence> mTextArray = new SparseArray<>();
+
+        //存放显示隐藏的 Visib
+        public SparseArray<Boolean> mVisiableArray = new SparseArray<>();
+
         //存放点击事件
         public SparseArray<View.OnClickListener> mClickListenerSparseArray = new SparseArray<>();
         public int mWidth = ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -126,6 +130,11 @@ class AlertController {
 
             }
             //设置显示
+            int visiableSize = mVisiableArray.size();
+            for (int i = 0; i < visiableSize; i++) {
+                viewHelper.setVisiable(mVisiableArray.keyAt(i),mVisiableArray.valueAt(i));
+            }
+
 
             Window window = mAlert.getWindow();
             if (mAnimations != 0) {

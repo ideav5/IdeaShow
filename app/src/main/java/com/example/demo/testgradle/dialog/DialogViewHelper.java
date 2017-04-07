@@ -52,6 +52,14 @@ class DialogViewHelper {
 
     }
 
+    public void setVisiable(int i, boolean isvisiable) {
+        View view = findView(i);
+        if (view != null) {
+            view.setVisibility(isvisiable?View.VISIBLE:View.GONE);
+        }
+
+    }
+
     public  <T extends View> T findView(@IdRes int id) {
 
         WeakReference<View> viewWeakReference = mViews.get(id);

@@ -10,11 +10,10 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.demo.testgradle.R;
+import com.rablive.jwrablive.R;
 
 
 /**
- *
  * Created by guilianghuang on 2017/3/11.
  */
 
@@ -68,26 +67,28 @@ public class AlertDialog extends Dialog {
 
 
         public Builder setBackShape(int shapeId) {
-            P.mBackShape=shapeId;
-            return  this;
+            P.mBackShape = shapeId;
+            return this;
 
         }
 
         /**
          * 添加默认动画
+         *
          * @return
          */
-        public Builder addDefaultAnimation(){
+        public Builder addDefaultAnimation() {
             P.mAnimations = R.style.dialog_scale_anim;
             return this;
         }
 
         /**
          * 设置动画
+         *
          * @param styleAnimation
          * @return
          */
-        public Builder setAnimations(int styleAnimation){
+        public Builder setAnimations(int styleAnimation) {
             P.mAnimations = styleAnimation;
             return this;
         }
@@ -123,6 +124,11 @@ public class AlertDialog extends Dialog {
             return this;
         }
 
+        public Builder setVisibility(@IdRes int resId, boolean visibility) {
+            P.mVisiableArray.put(resId, visibility);
+            return this;
+        }
+
         public Builder setClickListener(@IdRes int resId, View.OnClickListener listener) {
             P.mClickListenerSparseArray.put(resId, listener);
             return this;
@@ -133,22 +139,24 @@ public class AlertDialog extends Dialog {
             P.mWidth = ViewGroup.LayoutParams.MATCH_PARENT;
             return this;
         }
-  public Builder setCancleable( boolean cancleable) {
+
+        public Builder setCancleable(boolean cancleable) {
             P.mCancelable = cancleable;
             return this;
         }
 
 
-        public Builder setSize(int width,int height) {
-            P.mWidth=width;
+        public Builder setSize(int width, int height) {
+            P.mWidth = width;
             P.mHeight = height;
             return this;
         }
 
         public Builder setBottom() {
-            P.mGravity= Gravity.BOTTOM;
+            P.mGravity = Gravity.BOTTOM;
             return this;
         }
+
         public Builder setDimEnable(boolean isDimable) {
             P.mDimEnable = isDimable;
             return this;
