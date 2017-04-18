@@ -3,6 +3,7 @@ package com.example.demo.testgradle.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.demo.testgradle.R;
 import com.example.demo.testgradle.dialog.AlertDialog;
+import com.example.demo.testgradle.heart.PeriscopeLayout;
 import com.example.demo.testgradle.navigationbar.DefaultNavigationBar;
 import com.example.demo.testgradle.rx.RxBus;
 import com.example.demo.testgradle.util.LoggerUtils;
@@ -43,6 +45,12 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout mActivityMain;
     @BindView(R.id.btn_rxjava)
     View mBtnRxjava;
+
+    @BindView(R.id.ppl)
+    PeriscopeLayout mPPL;
+
+    @BindView(R.id.btn_anim)
+    Button mBtnAnim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 //        RxView.clicks(mBtnRxjava)
     }
 
-    @OnClick({R.id.base_btn, R.id.refresh_load_btn, R.id.btn_dialog, R.id.btn_drag, R.id.btn_tinker/*, R.id.btn_rxjava*/})
+    @OnClick({R.id.base_btn, R.id.refresh_load_btn, R.id.btn_dialog, R.id.btn_drag, R.id.btn_anim, R.id.btn_tinker/*, R.id.btn_rxjava*/})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.base_btn:
@@ -142,6 +150,29 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 break;
+
+            case R.id.btn_anim:
+                startAnim();
+
+                break;
         }
+    }
+
+    private void startAnim() {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true){
+                    SystemClock.sleep(200);
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPPL.addFavor();
+                    }
+                });
+            }}
+        }).start();
+
     }
 }

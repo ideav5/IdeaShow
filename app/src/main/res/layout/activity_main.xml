@@ -25,20 +25,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Dialog"/>
+
     <Button
         android:id="@+id/btn_drag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="拖拽RecyclerView"/>
+
     <Button
         android:id="@+id/btn_tinker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="加载补丁"/>
- <Button
+
+    <Button
         android:id="@+id/btn_rxjava"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="RxJava"/>
+
+    <Button
+        android:id="@+id/btn_anim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Anim"/>
+
+
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right">
+
+        <com.example.demo.testgradle.heart.PeriscopeLayout
+            android:id="@+id/ppl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+    </RelativeLayout>
 
 </LinearLayout>
