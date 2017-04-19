@@ -1,5 +1,6 @@
 package com.example.demo.testgradle.activity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -21,6 +22,8 @@ import com.example.demo.testgradle.util.LoggerUtils;
 import com.example.demo.testgradle.util.ToasUtils;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
+import com.tbruyelle.rxpermissions.Permission;
+import com.tbruyelle.rxpermissions.RxPermissions;
 import com.tencent.bugly.beta.Beta;
 
 import java.util.concurrent.TimeUnit;
@@ -82,10 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView view = new TextView(this);
         RxTextView.textChanges(view).skip(1).take(1).subscribe();
-
-//        findViewById()
-//
-        RxView.clicks(mBtnRxjava) .throttleFirst( 2 , TimeUnit.SECONDS )   //两秒钟之内只取一个点击事件，防抖操作
+        RxView.clicks(mBtnRxjava).throttleFirst(2, TimeUnit.SECONDS)   //两秒钟之内只取一个点击事件，防抖操作
                 .subscribe(new Action1<Void>() {
                     @Override
                     public void call(Void aVoid) {
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
                     }
-                }) ;
+                });
 //        RxView.clicks(mBtnRxjava)
     }
 
@@ -154,7 +154,52 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.btn_anim:
-                startAnim();
+
+                RxPermissions rxPermissions = new RxPermissions(this);
+                rxPermissions.requestEach(Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe(/*new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean aBoolean) {
+                        if (aBoolean) {
+                            String sFileFullPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/test.jpg";
+                            File file = new File(sFileFullPath);
+                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                            Uri imageUri = FileProvider.getUriForFile(MainActivity.this, "com.example.demo.testgradle.fileProvider", file);
+                            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+
+//                            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+                            startActivityForResult(intent, 1);
+                        } else {
+                            ToasUtils.toast(MainActivity.this,"00000000");
+                        }
+                    }
+                }*/new Action1<Permission>() {
+
+                    @Override
+                    public void call(Permission permission) {
+                        if (permission.equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                            if (permission.granted) {
+                                ToasUtils.toast(MainActivity.this, "00000000");
+                            } else {
+                                ToasUtils.toast(MainActivity.this, "11111111");
+                            }
+                        } else {
+                            if (permission.granted) {
+                                ToasUtils.toast(MainActivity.this, "22222222222");
+                            } else {
+                                ToasUtils.toast(MainActivity.this, "333333333");
+                            }
+                        }
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+
+                    }
+                });
+//                startAnim();
 
                 break;
         }
@@ -165,15 +210,16 @@ public class MainActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true){
+                while (true) {
                     SystemClock.sleep(200);
-                MainActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mPPL.addFavor();
-                    }
-                });
-            }}
+                    MainActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mPPL.addFavor();
+                        }
+                    });
+                }
+            }
         }).start();
 
     }
