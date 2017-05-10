@@ -9,6 +9,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.example.demo.testgradle.util.LoggerUtils;
+
 /**
  * Created by idea on 2017/3/13.
  */
@@ -91,7 +93,7 @@ public class LoaderRefreshRecyclerView extends RefreshRecyclerView {
             return;
         }
         //恢复状态
-        int paddingBottom = mLoadView.getPaddingBottom();
+        int paddingBottom = mLoadView.getPaddingTop();
         int finalBottom = -mLoadViewHeight + 1;
         //用位置判断当前的状态
         if (mCurrentLoadStatus == LOAD_STATUS_LOOSEN_LOADING) {
@@ -111,6 +113,7 @@ public class LoaderRefreshRecyclerView extends RefreshRecyclerView {
             public void onAnimationUpdate(ValueAnimator animation) {
                 float value = (float) animation.getAnimatedValue();
                 setLoadViewPaddingBottom((int) value);
+
             }
         });
         animator.start();
@@ -130,6 +133,7 @@ public class LoaderRefreshRecyclerView extends RefreshRecyclerView {
                 }
                 // 获取手指触摸拖拽的距离
                 int distanceY = (int) ((e.getRawY() - mFingerDownY) * mDragIndex);//小于0
+                LoggerUtils.debug((e.getRawY() - mFingerDownY)+"       (e.getRawY() - mFingerDownY)      distanceY==="+distanceY);
                 if (distanceY < 0) {
                     int marginBottom = -distanceY - mLoadViewHeight;
                     setLoadViewPaddingBottom(marginBottom);
@@ -165,15 +169,25 @@ public class LoaderRefreshRecyclerView extends RefreshRecyclerView {
             if (mLoadViewHeight > 0) {
                 // 隐藏尾部刷新的View  marginTop  多留出1px防止无法判断是不是滚动到头部问题
                 setLoadViewPaddingBottom(-mLoadViewHeight + 1);
+                LoggerUtils.debug("onLayout      ");
             }
         }
     }
-
+int mcurrentpading=0;
     private void setLoadViewPaddingBottom(int paddingBottom) {
+
         if (paddingBottom < -mLoadViewHeight + 1) {
             paddingBottom = -mLoadViewHeight + 1;
+            LoggerUtils.debug("onLayout      "+paddingBottom);
         }
-        mLoadView.setPadding(0,0,0,paddingBottom);
+        if (paddingBottom > 0) {
+            paddingBottom = 0;
+        }
+        LoggerUtils.debug(-mLoadViewHeight+"onLayout      "+paddingBottom);
+        if (mcurrentpading != paddingBottom) {
+            mcurrentpading = paddingBottom;
+            mLoadView.setPadding(0,paddingBottom,0,0);
+        }
     }
 
 

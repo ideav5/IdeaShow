@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 //        RxView.clicks(mBtnRxjava)
     }
 
-    @OnClick({R.id.base_btn, R.id.refresh_load_btn, R.id.btn_dialog, R.id.btn_drag, R.id.btn_anim, R.id.btn_tinker/*, R.id.btn_rxjava*/})
+    @OnClick({R.id.base_btn, R.id.refresh_load_btn, R.id.btn_dialog, R.id.btn_drag, R.id.btn_anim, R.id.btn_tinker, R.id.btn_tool_bar})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.base_btn:
@@ -143,14 +143,15 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_tinker:
                 Beta.applyTinkerPatch(MainActivity.this, Environment.getExternalStorageDirectory().getAbsolutePath() + "/patch_signed_7zip.apk");
                 break;
-            case R.id.btn_rxjava:
-                Observable.timer(2, TimeUnit.SECONDS).subscribe(new Action1<Long>() {
-                    @Override
-                    public void call(Long aLong) {
-                        LoggerUtils.logger("Time===" + aLong);
-                        startActivity(new Intent(MainActivity.this, RxJavaActivity.class));
-                    }
-                });
+            case R.id.btn_tool_bar:
+//                Observable.timer(2, TimeUnit.SECONDS).subscribe(new Action1<Long>() {
+//                    @Override
+//                    public void call(Long aLong) {
+//                        LoggerUtils.logger("Time===" + aLong);
+//                        startActivity(new Intent(MainActivity.this, RxJavaActivity.class));
+//                    }
+//                });
+                startActivity(new Intent(this,ToolBarDemoActivity.class));
                 break;
 
             case R.id.btn_anim:

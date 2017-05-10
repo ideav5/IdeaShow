@@ -85,7 +85,7 @@ public class RefreshRecyclerView extends WrapRecyclerView {
                 }
                 int distanceY = (int) ((e.getRawY() - mFingerDownY) * mDragIndex);
                 //刷新
-//                LoggerUtils.debug("onTouchEvent   distanceY  :" + distanceY);
+                LoggerUtils.debug("onTouchEvent   distanceY  :" + distanceY);
                 if (distanceY > 0) {
                     int marginTop = distanceY - mRefreshViewHeight;
                     setRefreshViewMarginTop(marginTop);

@@ -45,6 +45,12 @@
         android:text="RxJava"/>
 
     <Button
+        android:id="@+id/btn_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TOOLBAR"/>
+
+    <Button
         android:id="@+id/btn_anim"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

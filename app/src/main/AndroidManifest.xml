@@ -45,6 +45,9 @@
             android:theme="@android:style/Theme.Translucent"/>
         <activity android:name=".activity.RxJavaActivity">
         </activity>
+        <activity android:name=".activity.ToolBarDemoActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

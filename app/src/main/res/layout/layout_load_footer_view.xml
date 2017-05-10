@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/refresh_iv"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_margin="20dp"
         android:visibility="invisible"
         android:src="@mipmap/list_load_more"
@@ -14,8 +15,10 @@
     <TextView
         android:id="@+id/load_tv"
         android:layout_width="wrap_content"
-        android:layout_centerInParent="true"
+       android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
         android:text="上拉加载更多"
         android:layout_height="wrap_content" />
 
-</RelativeLayout>
+</LinearLayout>
