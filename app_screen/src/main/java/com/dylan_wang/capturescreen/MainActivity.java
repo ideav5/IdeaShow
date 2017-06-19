@@ -40,7 +40,7 @@ public class MainActivity extends ActionBarActivity {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void startIntent(){
         if(intent != null && result != 0){
-            Log.i(TAG, "user agree the application to capture screen");
+            Log.i(TAG, "user agree the application to capture s  creen");
             //Service1.mResultCode = resultCode;
             //Service1.mResultData = data;
             ((ShotApplication)getApplication()).setResult(result);
