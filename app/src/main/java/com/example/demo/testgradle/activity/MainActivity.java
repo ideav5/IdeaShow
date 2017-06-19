@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.btn_anim)
     Button mBtnAnim;
+  @BindView(R.id.btn_shot)
+    Button mBtnShot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 //        RxView.clicks(mBtnRxjava)
     }
 
-    @OnClick({R.id.base_btn, R.id.refresh_load_btn, R.id.btn_dialog, R.id.btn_drag, R.id.btn_anim, R.id.btn_tinker, R.id.btn_tool_bar})
+    @OnClick({R.id.base_btn, R.id.refresh_load_btn, R.id.btn_dialog, R.id.btn_drag, R.id.btn_anim, R.id.btn_shot,  R.id.btn_tinker, R.id.btn_tool_bar})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.base_btn:
@@ -154,6 +156,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this,ToolBarDemoActivity.class));
                 break;
 
+            case R.id.btn_shot:
+                startActivity(new Intent(this,ScreenShotActivity.class));
+
+                break;
             case R.id.btn_anim:
 
                 RxPermissions rxPermissions = new RxPermissions(this);
@@ -236,4 +242,10 @@ public class MainActivity extends AppCompatActivity {
         res.updateConfiguration(config, res.getDisplayMetrics());
         return res;
     }
+
+
+
+
+
+
 }

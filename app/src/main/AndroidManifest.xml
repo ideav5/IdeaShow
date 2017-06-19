@@ -45,9 +45,20 @@
             android:theme="@android:style/Theme.Translucent"/>
         <activity android:name=".activity.RxJavaActivity">
         </activity>
-        <activity android:name=".activity.ToolBarDemoActivity"
+        <activity
+            android:name=".activity.ToolBarDemoActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
+        <activity
+            android:name=".activity.ScreenShotActivity"
+            android:exported="true"
+            android:process=":remote"/>
+
+        <service
+            android:name=".server.MyService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
     </application>
 
 </manifest>
