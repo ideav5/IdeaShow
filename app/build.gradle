@@ -55,6 +55,7 @@ android {
     }
     sourceSets {
         main {
+            jni.srcDirs 'src/main/source'
             jniLibs.srcDirs = ['libs']
         }
     }
@@ -73,6 +74,11 @@ android {
 //    初始化项目： gradle initFreeline -Pmirror
 //    编译并启动项目 python freeline.py
 //    强制全量编译项目 python freeline.py -f
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
 }
 
 dependencies {

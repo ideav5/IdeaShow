@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -19,6 +20,7 @@ import com.example.demo.testgradle.heart.PeriscopeLayout;
 import com.example.demo.testgradle.navigationbar.DefaultNavigationBar;
 import com.example.demo.testgradle.rx.RxBus;
 import com.example.demo.testgradle.util.LoggerUtils;
+import com.example.demo.testgradle.util.NativeUtils;
 import com.example.demo.testgradle.util.ToasUtils;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
@@ -157,8 +159,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.btn_shot:
-                startActivity(new Intent(this,ScreenShotActivity.class));
-
+//                startActivity(new Intent(this,ScreenShotActivity.class));
+                NativeUtils.callJava();
                 break;
             case R.id.btn_anim:
 
@@ -229,6 +231,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }).start();
 
+    }
+
+
+    public void printLog() {
+        Log.d("哈哈","我是NDK===============================");
     }
 
     /**
