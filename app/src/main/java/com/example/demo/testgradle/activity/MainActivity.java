@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -20,13 +19,11 @@ import com.example.demo.testgradle.heart.PeriscopeLayout;
 import com.example.demo.testgradle.navigationbar.DefaultNavigationBar;
 import com.example.demo.testgradle.rx.RxBus;
 import com.example.demo.testgradle.util.LoggerUtils;
-import com.example.demo.testgradle.util.NativeUtils;
 import com.example.demo.testgradle.util.ToasUtils;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.tbruyelle.rxpermissions.Permission;
 import com.tbruyelle.rxpermissions.RxPermissions;
-import com.tencent.bugly.beta.Beta;
 
 import java.util.concurrent.TimeUnit;
 
@@ -145,9 +142,12 @@ public class MainActivity extends AppCompatActivity {
                 });
                 break;
             case R.id.btn_tinker:
-                Beta.applyTinkerPatch(MainActivity.this, Environment.getExternalStorageDirectory().getAbsolutePath() + "/patch_signed_7zip.apk");
+                startActivity(new Intent(MainActivity.this, TestActivity.class));
+//                Beta.applyTinkerPatch(MainActivity.this, Environment.getExternalStorageDirectory().getAbsolutePath() + "/patch_signed_7zip.apk");
                 break;
             case R.id.btn_tool_bar:
+
+
 //                Observable.timer(2, TimeUnit.SECONDS).subscribe(new Action1<Long>() {
 //                    @Override
 //                    public void call(Long aLong) {
@@ -159,8 +159,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.btn_shot:
-//                startActivity(new Intent(this,ScreenShotActivity.class));
-                NativeUtils.callJava();
+                startActivity(new Intent(this,BehaviorActivity.class));
+                //NativeUtils.callJava();
+
+
                 break;
             case R.id.btn_anim:
 

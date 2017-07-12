@@ -36,7 +36,12 @@ public class ScreenShotActivity extends AppCompatActivity implements View.OnClic
     Context mContext;
     private MediaProjectionManager mMediaProjectionManager;
     private WindowManager mWindowManager;
+    private ImageReader mImageReader;
+    private DisplayMetrics mMetrics;
+    private int mWidth;
+    private int mHeight;
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +56,13 @@ public class ScreenShotActivity extends AppCompatActivity implements View.OnClic
         mWindowManager = getWindowManager();
         findViewById(R.id.btn_shot_btn).setOnClickListener(this);
         mMediaProjectionManager = (MediaProjectionManager) getSystemService(Context.MEDIA_PROJECTION_SERVICE);
+        mWidth = mWindowManager.getDefaultDisplay().getWidth();
+        mHeight = mWindowManager.getDefaultDisplay().getHeight();
 
+        mImageReader = ImageReader.newInstance(mWidth, mHeight, ImageFormat.RGB_565, 2);
+
+        mMetrics = new DisplayMetrics();
+        mWindowManager.getDefaultDisplay().getMetrics(mMetrics);
 
 //        toolbar.
     }
@@ -62,6 +73,7 @@ public class ScreenShotActivity extends AppCompatActivity implements View.OnClic
 
         Intent intent = mMediaProjectionManager.createScreenCaptureIntent();
         startActivityForResult(intent, 0x66);
+//        startActivityForResult(mMediaProjectionManager.createScreenCaptureIntent(), REQUEST_MEDIA_PROJECTION);
 
     }
 
@@ -70,18 +82,17 @@ public class ScreenShotActivity extends AppCompatActivity implements View.OnClic
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != Activity.RESULT_OK) {return;}
-        int mWidth = mWindowManager.getDefaultDisplay().getWidth();
-        int mHeight = mWindowManager.getDefaultDisplay().getHeight();
-        ImageReader mImageReader = ImageReader.newInstance(mWidth, mHeight, ImageFormat.RGB_565, 2);
-        DisplayMetrics metrics = new DisplayMetrics();
-        mWindowManager.getDefaultDisplay().getMetrics(metrics);
-        int mScreenDensity = metrics.densityDpi;
 
+        int mScreenDensity = mMetrics.densityDpi;
+//        1440x2560
         MediaProjection mProjection = mMediaProjectionManager.getMediaProjection(resultCode, data);
         final VirtualDisplay virtualDisplay = mProjection.createVirtualDisplay("screen-mirror",
                 mWidth, mHeight, mScreenDensity, DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR,
                 mImageReader.getSurface(), null, null);
         Image image = mImageReader.acquireLatestImage();
+        if (image == null) {
+            return;
+        }
         final Image.Plane[] planes = image.getPlanes();
         final ByteBuffer buffer = planes[0].getBuffer();
         int offset = 0;

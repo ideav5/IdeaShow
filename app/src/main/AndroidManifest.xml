@@ -45,6 +45,8 @@
             android:theme="@android:style/Theme.Translucent"/>
         <activity android:name=".activity.RxJavaActivity">
         </activity>
+        <activity android:name=".activity.OpenGLActivity">
+        </activity>
         <activity
             android:name=".activity.ToolBarDemoActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -59,6 +61,11 @@
             android:enabled="true"
             android:exported="true">
         </service>
+
+        <activity android:name=".activity.TestActivity">
+        </activity>
+        <activity android:name=".activity.BehaviorActivity">
+        </activity>
     </application>
 
 </manifest>
