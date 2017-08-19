@@ -19,6 +19,7 @@ import com.example.demo.testgradle.heart.PeriscopeLayout;
 import com.example.demo.testgradle.navigationbar.DefaultNavigationBar;
 import com.example.demo.testgradle.rx.RxBus;
 import com.example.demo.testgradle.util.LoggerUtils;
+import com.example.demo.testgradle.util.NativeUtils;
 import com.example.demo.testgradle.util.ToasUtils;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 //        RxView.clicks(mBtnRxjava)
     }
 
-    @OnClick({R.id.base_btn, R.id.refresh_load_btn, R.id.btn_dialog, R.id.btn_drag, R.id.btn_anim, R.id.btn_shot,  R.id.btn_tinker, R.id.btn_tool_bar})
+    @OnClick({R.id.base_btn, R.id.refresh_load_btn, R.id.btn_dialog, R.id.btn_drag, R.id.btn_anim, R.id.btn_shot,  R.id.btn_tinker, R.id.btn_tool_bar, R.id.btn_native})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.base_btn:
@@ -212,6 +213,12 @@ public class MainActivity extends AppCompatActivity {
                 });
 //                startAnim();
 
+                break;
+            case R.id.btn_native:
+
+                NativeUtils.callJava();
+                String pwd = NativeUtils.getPwd();
+                ToasUtils.toast(MainActivity.this, pwd);
                 break;
         }
     }

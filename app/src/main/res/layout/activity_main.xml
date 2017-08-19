@@ -61,6 +61,12 @@
         android:layout_height="wrap_content"
         android:text="ScreenShot"/>
 
+ <Button
+        android:id="@+id/btn_native"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="btn_native"/>
+
 
     <RelativeLayout
         android:layout_width="100dp"

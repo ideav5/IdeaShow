@@ -28,13 +28,14 @@ public class HeaderBehavior extends CoordinatorLayout.Behavior<View> {
 
     @Override
     public boolean layoutDependsOn(CoordinatorLayout parent, View child, View dependency) {
-        if (isDepend(dependency)) {
-            Log.i("HeaderBehavior", "isDeoendent : true");
-            mDependencyView = new WeakReference<View>(dependency);
-            return true;
-        }
+//        if (isDepend(dependency)) {
+//            Log.i("HeaderBehavior", "isDeoendent : true");
+//            mDependencyView = new WeakReference<View>(dependency);
+//            return true;
+//        }
 
-        return false;
+//        Log.d(TAG, child+"LogAAAAAAA"+dependency );
+        return dependency != null && dependency.getId() == R.id.rec_view;
     }
 
     @Override
@@ -44,12 +45,19 @@ public class HeaderBehavior extends CoordinatorLayout.Behavior<View> {
 
     @Override
     public boolean onNestedFling(CoordinatorLayout coordinatorLayout, View child, View target, float velocityX, float velocityY, boolean consumed) {
-        if (!consumed) {
+//        if (!consumed) {
 
             return true;
-        }else
-            return super.onNestedFling(coordinatorLayout, child, target, velocityX, velocityY, consumed);
+//        }else
+//            return super.onNestedFling(coordinatorLayout, child, target, velocityX, velocityY, consumed);
     }
+
+
+//    @Override
+//    public boolean onNestedPreFling(CoordinatorLayout coordinatorLayout, View child, View target, float velocityX, float velocityY) {
+//        return true;
+//    }
+
 
     @Override
     public void onNestedScroll(CoordinatorLayout coordinatorLayout, View child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
@@ -66,12 +74,12 @@ public class HeaderBehavior extends CoordinatorLayout.Behavior<View> {
 
 
 
-
-        if (dyConsumed < 0) {
-            child.setVisibility(View.GONE);
-        } else {
-            child.setVisibility(View.VISIBLE);
-        }
+//
+//        if (dyConsumed < 0) {
+//            child.setVisibility(View.GONE);
+//        } else {
+//            child.setVisibility(View.VISIBLE);
+//        }
 
         Log.d(TAG, b+"Log.d(TAG," );
 

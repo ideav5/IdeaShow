@@ -10,4 +10,6 @@ public class NativeUtils {
     }
 
     public static native void callJava();
+
+    public static native String getPwd();
 }
