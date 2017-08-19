@@ -54,6 +54,7 @@ Java_com_example_demo_testgradle_util_NativeUtils_getPwd(JNIEnv *env, jclass obj
     jclass  native_clazz = (*env)->FindClass(env,"com/example/demo/testgradle/util/StringTest");
 //    jclass native_clazz = (*env)->GetObjectClass(env,obj);
 
+
     //得到jfieldID
     jfieldID fieldID_prop = (*env)->GetStaticFieldID(env,native_clazz,"key","Ljava/lang/String;");
 //    jfieldID fieldID_num = (*env)->GetFieldID(native_clazz,"number","I");
